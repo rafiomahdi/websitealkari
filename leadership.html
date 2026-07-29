@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership | Alkari Group</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+    <style>
+        /* Shared Variables & Base Aesthetics */
+        :root {
+            --bg-top: #3a3b40;      
+            --bg-bottom: #1c1c1f;   
+            --text-primary: #ffffff;
+            --text-secondary: #d1d1d1;
+            --border-color: rgba(255, 255, 255, 0.2);
+            --surface-color: rgba(255, 255, 255, 0.08); 
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.75;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=2000&auto=format&fit=crop&grayscale=1');
+            background-size: cover; background-position: center;
+            opacity: 0.07; z-index: -1; pointer-events: none; mix-blend-mode: luminosity;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 500; }
+        a, button { color: var(--text-primary); text-decoration: none; transition: all 0.3s ease; }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: linear-gradient(to bottom, rgba(40,41,45,0.95) 0%, rgba(40,41,45,0) 100%);
+            z-index: 1000; transition: background 0.3s ease, padding 0.3s ease;
+        }
+        nav.scrolled {
+            background: rgba(35, 36, 40, 0.9); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-color); padding: 1rem 5%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        }
+        .brand-logo { height: 35px; width: auto; object-fit: contain; display: block; }
+        .brand-fallback { font-size: 1.6rem; letter-spacing: 0.05em; font-family: var(--font-heading); font-weight: 600; }
+
+        .nav-links { display: flex; gap: 2.2rem; align-items: center; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
+        .nav-links a:hover { color: var(--text-secondary); }
+
+        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; }
+        .hamburger span { width: 28px; height: 2px; background-color: var(--text-primary); transition: all 0.3s ease; border-radius: 2px; }
+
+        /* General Section Structure */
+        section { padding: 6rem 5%; max-width: 1400px; margin: 0 auto; padding-top: 10rem; }
+        .section-header { text-align: center; margin-bottom: 3.5rem; }
+        .section-header h1 { font-size: clamp(2.2rem, 4vw, 2.8rem); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+        .section-header .line { width: 60px; height: 1px; background-color: var(--text-primary); margin: 0 auto; }
+
+        /* PREMIUM LEADERSHIP SECTION */
+        .leadership-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1.2fr; 
+            gap: 5rem; 
+            align-items: center; 
+            margin-top: 2rem; 
+            margin-bottom: 5rem;
+        }
+        .leadership-image-wrapper { 
+            position: relative; 
+            overflow: hidden; 
+            border-radius: 6px; 
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6); 
+        }
+        .leadership-image-wrapper::after { 
+            content: ''; 
+            position: absolute; 
+            inset: 0; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            pointer-events: none; 
+            border-radius: 6px;
+        }
+        .leadership-img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+            filter: none;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
+        }
+        .leadership-image-wrapper:hover .leadership-img { 
+            transform: scale(1.03); 
+        }
+        .leadership-content { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+        }
+        .leadership-label { 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.2em; 
+            color: var(--text-secondary); 
+            margin-bottom: 1rem; 
+            display: block; 
+        }
+        .chairman-name { 
+            font-size: clamp(2.5rem, 4vw, 3.5rem); 
+            margin-bottom: 0.2rem; 
+            line-height: 1.1; 
+            color: var(--text-primary); 
+            font-family: var(--font-heading); 
+            font-weight: 400; 
+        }
+        .chairman-position { 
+            font-size: 0.95rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            color: var(--text-secondary); 
+            margin-bottom: 2.5rem; 
+            padding-bottom: 2rem; 
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+        }
+        .chairman-bio p { 
+            font-size: 1.05rem; 
+            color: var(--text-secondary); 
+            margin-bottom: 1.5rem; 
+            line-height: 1.8; 
+            font-weight: 300; 
+        }
+        .chairman-quote { 
+            font-family: var(--font-heading); 
+            font-size: 1.8rem; 
+            font-style: italic; 
+            color: var(--text-primary); 
+            border-left: 2px solid rgba(255,255,255,0.25); 
+            padding-left: 1.8rem; 
+            margin-top: 2.5rem; 
+            line-height: 1.3; 
+            font-weight: 400; 
+        }
+
+        /* ---------------------------------------
+           CORPORATE MULTI-COLUMN SITE FOOTER 
+        ---------------------------------------- */
+        .site-footer { background: rgba(20, 21, 24, 0.9); backdrop-filter: blur(15px); border-top: 1px solid var(--border-color); padding: 5rem 5% 2rem; position: relative; }
+        .footer-grid { display: grid; grid-template-columns: 1.3fr 0.8fr 0.8fr 1.1fr; gap: 4rem; max-width: 1400px; margin: 0 auto; }
+        .footer-col h4 { font-size: 1.4rem; color: var(--text-primary); margin-bottom: 1.8rem; letter-spacing: 0.05em; }
+        .office-title { font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-top: 1.2rem; margin-bottom: 0.4rem; }
+        .office-address, .office-phone { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
+        .office-phone { margin-top: 0.5rem; display: block; }
+        
+        .social-icons { display: flex; gap: 1rem; margin-top: 1.8rem; }
+        .social-icons a { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.2); color: var(--text-secondary); transition: all 0.3s ease; }
+        .social-icons a:hover { border-color: rgba(255, 255, 255, 0.6); color: var(--text-primary); transform: translateY(-3px); background: rgba(255, 255, 255, 0.05); }
+        .social-icons svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a { font-size: 0.95rem; color: var(--text-secondary); transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--text-primary); padding-left: 2px; }
+
+        .footer-bottom { max-width: 1400px; margin: 4rem auto 0; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; }
+        .footer-copy { color: var(--text-secondary); font-size: 0.9rem; letter-spacing: 0.05em; font-weight: 300; }
+
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* Media Queries */
+        @media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+        @media (max-width: 900px) {
+            .hamburger { display: flex; }
+            .nav-links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; background: rgba(45, 46, 50, 0.98); backdrop-filter: blur(20px); flex-direction: column; justify-content: center; gap: 2.5rem; transition: right 0.4s ease; }
+            .nav-links.active { right: 0; }
+            .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            
+            .leadership-grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+            .leadership-content { align-items: center; }
+            .chairman-bio p { text-align: center; }
+            .chairman-quote { border-left: none; padding-left: 0; font-size: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; }
+        }
+        @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+        @media (max-width: 768px) { section { padding: 8rem 5% 4rem; } }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="index.html" class="brand">
+            <!-- GANTI LOGO DI BAWAH INI -->
+            <img src="assets/image/nama-logo-anda.png" alt="Alkari Group" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="brand-fallback" style="display:none;">Alkari Group</span>
+        </a>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        <div class="nav-links" id="nav-links">
+            <!-- Link disesuaikan agar kembali ke halaman utama (index.html) saat di klik dari halaman ini -->
+            <a href="index.html#about">About</a>
+            <a href="leadership.html" style="color: var(--text-primary);">Leadership</a>
+            <a href="index.html#services">Services</a>
+            <a href="index.html#subsidiaries">Subsidiaries</a>
+            <a href="index.html#contact">Contact Us</a>
+        </div>
+    </nav>
+
+    <section id="leadership">
+        <div class="section-header fade-up">
+            <h1>Board of Leadership</h1>
+            <div class="line"></div>
+        </div>
+        <div class="leadership-grid">
+            <div class="leadership-image-wrapper fade-up">
+                <!-- Masukkan link / path foto chairman di sini -->
+                <img src="assets/image/chairman-alkari.jpg" alt="Chairman of Alkari Group" class="leadership-img" loading="lazy">
+            </div>
+            <div class="leadership-content fade-up">
+                <span class="leadership-label">Our Leadership</span>
+                <h3 class="chairman-name">Mahdi Yuwono</h3>
+                <p class="chairman-position">Chairman of Alkari Group</p>
+                
+                <div class="chairman-bio">
+                    <p>As Chairman of Alkari Group, Mahdi Yuwono provides strategic direction and long-term vision in developing sustainable businesses across multiple industries.</p>
+                    <p>With a commitment to integrity, innovation, and responsible growth, he guides Alkari Group in building a strong business ecosystem focused on creating lasting value.</p>
+                </div>
+
+                <blockquote class="chairman-quote">
+                    "Building sustainable businesses through integrity, innovation, and long-term vision."
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <!-- GANTI LOGO DI BAWAH INI -->
+                <img src="assets/image/logo.png" alt="Alkari Group" class="brand-logo" style="margin-bottom: 1.5rem;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="brand-fallback" style="display:none; margin-bottom: 1.5rem;">Alkari Group</div>
+                
+                <p class="office-title">Our Representative Office</p>
+                <p class="office-address">Wisma H1 Kav. 23 Lt. 2, Jl. Raflesia IV,<br>Depok, Jawa Barat, Indonesia, 16452</p>
+                <span class="office-phone">Phone: (021) 782-2818</span>
+
+                <div class="social-icons">
+                    <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Corporate Information</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#about">About Alkari</a></li>
+                    <li><a href="index.html#services">Our Services</a></li>
+                    <li><a href="index.html#subsidiaries">Subsidiaries Portfolio</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">&copy; 2026 PT Alkara Indonesia Megapersada. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+
+        const hamburger = document.getElementById('hamburger'), navLinks = document.getElementById('nav-links');
+        const toggleMenu = () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('active'); };
+        hamburger.addEventListener('click', toggleMenu);
+
+        const observer = new IntersectionObserver(entries => entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }), { threshold: 0.15 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
