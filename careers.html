@@ -3,509 +3,443 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alkari Group | Career Opportunities</title>
-    <!-- Menggunakan font Plus Jakarta Sans untuk kesan modern dan rapi -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Alkari Group | Thriving Ad(venture), Turning Vision Into Reality.</title>
+    <meta name="description" content="Alkari Group is a premier Jakarta-based holding company established in 2018, specializing in legal advisory, strategic consulting, venture investment, energy partnerships, and workforce solutions.">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* --- TEMA WARNA (Grey & White, Minimalist) --- */
+        /* Shared Variables & Bright, Clean Gen-Z Aesthetic */
         :root {
-            --bg-main: #F9FAFB; /* Off-white / abu-abu sangat muda */
-            --bg-card: #FFFFFF; /* Putih bersih untuk elemen menonjol */
-            --text-dark: #111827; /* Hitam keabu-abuan untuk judul */
-            --text-gray: #4B5563; /* Abu-abu untuk teks biasa */
-            --border-light: #E5E7EB; /* Garis batas halus */
-            --accent-black: #030712; /* Hitam pekat untuk tombol utama */
-            --hover-grey: #F3F4F6;
+            --bg-top: #f8fafc;      
+            --bg-bottom: #f1f5f9;   
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-color: #3b82f6;
+            --border-color: rgba(148, 163, 184, 0.25);
+            --surface-color: #ffffff; 
+            --surface-hover: #f8fafc;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-main);
-            color: var(--text-dark);
-            line-height: 1.6;
+            background: linear-gradient(135deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.7;
+            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+        /* Bright Ambient Glow Effect */
+        body::before {
+            content: ''; position: fixed; top: -15%; left: -15%; width: 60vw; height: 60vw;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1; pointer-events: none;
         }
 
-        .container {
-            max-width: 1100px; /* Sedikit dirapatkan agar lebih fokus */
-            margin: 0 auto;
-            padding: 100px 20px;
-        }
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; letter-spacing: -0.02em; color: #0f172a; }
+        a, button { color: var(--text-primary); text-decoration: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
 
-        /* --- BUTTONS --- */
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 50px; /* Pill shape untuk kesan modern */
-            font-weight: 600;
-            font-size: 1rem;
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 1.2rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000; transition: all 0.3s ease;
+        }
+        nav.scrolled { padding: 0.9rem 5%; background: rgba(255, 255, 255, 0.95); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); }
+        .brand-fallback { font-size: 1.4rem; letter-spacing: -0.03em; font-family: var(--font-heading); font-weight: 700; color: #0f172a; }
+
+        .nav-links { display: flex; gap: 2rem; align-items: center; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; }
+        .nav-links a { color: var(--text-secondary); }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+
+        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; }
+        .hamburger span { width: 26px; height: 2px; background-color: var(--text-primary); transition: all 0.3s ease; border-radius: 2px; }
+
+        .get-started-btn {
+            background: #0f172a; border: 1px solid #0f172a;
+            color: #ffffff; padding: 0.6rem 1.4rem; border-radius: 50px; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.75rem; font-family: var(--font-heading); font-weight: 600;
             transition: all 0.3s ease;
-            cursor: pointer;
-            text-align: center;
-            border: none;
+        }
+        .get-started-btn:hover {
+            background: #3b82f6; border-color: #3b82f6;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3); transform: translateY(-2px);
         }
 
-        .btn-primary {
-            background-color: var(--accent-black);
-            color: #FFFFFF;
-            box-shadow: 0 4px 14px 0 rgba(0,0,0,0.1);
+        /* Hero Section */
+        .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; }
+        .hero-badge {
+            background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 0.4rem 1.2rem; border-radius: 30px; font-size: 0.8rem; font-weight: 500; color: #2563eb;
+            margin-bottom: 1.5rem; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 8px;
         }
+        .hero-badge span { width: 6px; height: 6px; background: #2563eb; border-radius: 50%; box-shadow: 0 0 8px #2563eb; }
+        .hero h1 { font-size: clamp(2.8rem, 5.5vw, 5.5rem); line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
+        .hero h1 strong { background: linear-gradient(135deg, #0f172a 20%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+        .hero p { font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-            background-color: #1F2937;
-        }
+        section { padding: 5rem 5%; max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: clamp(2rem, 3.5vw, 2.5rem); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+        .section-header .line { width: 40px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-color), transparent); margin: 0 auto; }
 
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-dark);
-            border: 1px solid var(--border-light);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--hover-grey);
-            border-color: #D1D5DB;
-        }
-
-        /* --- TYPOGRAPHY --- */
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: -0.02em;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            margin-bottom: 40px;
-        }
-
-        /* --- BAGIAN 1: HERO SECTION --- */
-        .hero {
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            background: linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            max-width: 800px;
-            margin-bottom: 24px;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin-bottom: 40px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .hero-meta {
-            font-size: 0.85rem;
-            color: #6B7280;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        /* --- BAGIAN 2 & 6: SPLIT SECTION (ABOUT & CULTURE) --- */
-        .split-section {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-
-        .split-section.reverse {
-            flex-direction: row-reverse;
-        }
-
-        .split-text {
-            flex: 1;
-        }
-
-        .split-image {
-            flex: 1;
-            height: 400px;
-            background-color: var(--border-light);
-            border-radius: 20px; /* Sudut lebih membulat */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-gray);
-            font-size: 0.9rem;
+        /* ==========================================================================
+           BRIGHT GEN-Z CAREERS & JOB SEARCH SECTION 
+           ========================================================================== */
+        .careers-section {
+            margin-top: 1rem;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 4rem 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
             position: relative;
             overflow: hidden;
         }
-        
-        .split-image::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+
+        .career-search-box {
+            max-width: 650px;
+            margin: 0 auto 3rem auto;
+            position: relative;
         }
-        
-        .split-image span {
-            z-index: 2;
-            background: rgba(255,255,255,0.8);
-            padding: 8px 16px;
+
+        .career-search-input {
+            width: 100%;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
             border-radius: 50px;
+            padding: 1.1rem 1.8rem 1.1rem 3.5rem;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.01);
         }
 
-        /* --- BAGIAN 3: WHY JOIN US --- */
-        .why-us {
-            text-align: center;
-            background-color: #FFFFFF;
-            padding: 100px 20px;
-            border-radius: 30px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            margin: 0 auto;
-            max-width: 1200px;
+        .career-search-input::placeholder { color: #94a3b8; }
+
+        .career-search-input:focus {
+            border-color: #3b82f6;
+            background: #ffffff;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.12), inset 0 2px 4px rgba(0,0,0,0.01);
         }
-        
-        .grid-4 {
+
+        .career-search-icon {
+            position: absolute;
+            left: 1.4rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            stroke: #64748b;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .jobs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .feature-card {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.15rem;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-        }
-
-        .feature-card p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-        }
-
-        /* --- BAGIAN 4: OPEN POSITIONS (Sleek List View) --- */
-        .open-positions {
-            text-align: center;
-        }
-
-        .job-list {
-            margin-top: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            text-align: left;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 1.8rem;
         }
 
         .job-card {
-            background-color: var(--bg-card);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid var(--border-light);
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.2rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-            transition: all 0.2s ease;
         }
 
         .job-card:hover {
-            border-color: #D1D5DB;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-            transform: translateY(-2px);
+            transform: translateY(-6px);
+            background: #ffffff;
+            border-color: #3b82f6;
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.08);
         }
 
-        .job-info h3 {
-            font-size: 1.25rem;
-            margin-bottom: 8px;
-            color: var(--text-dark);
+        .job-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 0.3rem 0.9rem;
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
+            color: #2563eb;
+            margin-bottom: 1.2rem;
+            width: fit-content;
         }
 
-        .job-meta {
-            display: flex;
-            gap: 15px;
+        .job-card h4 {
+            font-size: 1.35rem;
+            margin-bottom: 0.6rem;
+            color: #0f172a;
+        }
+
+        .job-card p {
             font-size: 0.9rem;
-            color: var(--text-gray);
-            align-items: center;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
-        .job-meta span {
-            display: flex;
+        .job-details-link {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #2563eb;
+            display: inline-flex;
             align-items: center;
+            gap: 8px;
+            transition: gap 0.3s ease;
         }
-        
-        .job-meta span::after {
-            content: "•";
-            margin-left: 15px;
-            color: #D1D5DB;
-        }
-        
-        .job-meta span:last-child::after {
+
+        .job-card:hover .job-details-link { gap: 12px; color: #1d4ed8; }
+
+        .no-results-msg {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: #f8fafc;
+            border: 1px dashed var(--border-color);
+            border-radius: 16px;
+            color: var(--text-secondary);
+            font-size: 1rem;
             display: none;
         }
 
-        .tag {
-            background-color: var(--hover-grey);
-            color: var(--text-dark);
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
+        /* Modal Overlays */
+        .modal-overlay { display: none; position: fixed; inset: 0; background-color: rgba(15, 23, 42, 0.4); backdrop-filter: blur(8px); z-index: 2000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; padding: 5%; }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-content { background: #ffffff; border: 1px solid var(--border-color); border-radius: 24px; padding: 2.5rem; width: 100%; max-width: 520px; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.1); transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); max-height: 90vh; overflow-y: auto;}
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .close-btn { position: absolute; top: 1.4rem; right: 1.4rem; font-size: 1.3rem; color: var(--text-secondary); cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #f1f5f9; transition: all 0.2s ease; }
+        .close-btn:hover { color: #0f172a; background: #e2e8f0; }
 
-        /* --- BAGIAN 5: TALENT COMMUNITY --- */
-        .talent-community {
+        .input-group { margin-bottom: 1.2rem; }
+        .input-group input, .input-group textarea { 
+            width: 100%; background: #f8fafc; border: 1px solid var(--border-color); 
+            border-radius: 12px; padding: 0.95rem 1.2rem; color: var(--text-primary); 
+            font-family: var(--font-body); font-size: 0.9rem; outline: none; transition: all 0.3s ease; 
+        }
+        .input-group input:focus, .input-group textarea:focus { border-color: #3b82f6; background: #ffffff; box-shadow: 0 0 15px rgba(59, 130, 246, 0.1); }
+        
+        .submit-btn { 
+            width: 100%; background-color: #0f172a; color: #ffffff; border: none; border-radius: 12px; 
+            padding: 1rem; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; 
+            letter-spacing: 0.08em; font-size: 0.85rem; font-family: var(--font-heading); margin-top: 0.5rem;
+        }
+        .submit-btn:hover { background-color: #3b82f6; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25); }
+
+        /* Footer */
+        .site-footer {
+            background: #ffffff;
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 5% 2rem;
             text-align: center;
-        }
-
-        .talent-box {
-            background-color: var(--text-dark);
-            color: #FFFFFF;
-            padding: 80px 20px;
-            border-radius: 30px;
-        }
-
-        .talent-box p {
-            color: #9CA3AF;
-            max-width: 500px;
-            margin: 0 auto 30px auto;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            padding: 80px 20px 40px;
-            text-align: center;
-        }
-
-        .footer-headline {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 60px;
-            letter-spacing: -0.03em;
-        }
-
-        .footer-logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .footer-tagline {
-            color: var(--text-gray);
-            margin-bottom: 40px;
-            font-size: 0.95rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            color: var(--text-gray);
-            margin-bottom: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .footer-links a:hover {
-            color: var(--text-dark);
-        }
-
-        .copyright {
+            color: var(--text-secondary);
             font-size: 0.85rem;
-            color: #9CA3AF;
-            border-top: 1px solid var(--border-light);
-            padding-top: 20px;
-            max-width: 600px;
-            margin: 0 auto;
+            margin-top: 6rem;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .split-section, .split-section.reverse { flex-direction: column; text-align: center; }
-            .job-card { flex-direction: column; align-items: flex-start; gap: 20px; }
-            .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; }
-            .btn { width: 100%; }
-            .job-meta { flex-wrap: wrap; gap: 10px; }
-            .job-meta span::after { display: none; }
+        @media (max-width: 900px) {
+            .hamburger { display: flex; }
+            .nav-links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; background: #ffffff; flex-direction: column; justify-content: center; gap: 2rem; transition: right 0.3s ease; border-left: 1px solid var(--border-color); box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
+            .nav-links.active { right: 0; }
+            .careers-section { padding: 2.5rem 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. HERO SECTION -->
+    <!-- Navigation Bar -->
+    <nav id="navbar">
+        <a href="#" class="brand">
+            <span class="brand-fallback">ALKARI GROUP</span>
+        </a>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        <div class="nav-links" id="nav-links">
+            <a href="#careers" class="active">Careers</a>
+            <button class="get-started-btn" onclick="document.getElementById('careers').scrollIntoView({behavior: 'smooth'})">Explore Jobs</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
     <section class="hero">
-        <h1>Build Your Future With Alkari Group</h1>
-        <p>Join a growing organization shaping the future across Energy, Property, Consulting, and Investment.</p>
-        <div class="hero-buttons">
-            <a href="#positions" class="btn btn-primary">View Open Positions</a>
-            <a href="#about" class="btn btn-secondary">Explore Opportunities</a>
-        </div>
-        <div class="hero-meta">
-            Jakarta, Indonesia | Career Opportunities
-        </div>
+        <div class="hero-badge"><span></span> We Are Hiring Gen-Z Talents</div>
+        <h1>Shape the Future of Innovation, <strong>Your Way</strong>.</h1>
+        <p>Ready to level up your career? Join Jakarta's most dynamic corporate ecosystem. Flexible, impact-driven, and zero boring vibes!</p>
     </section>
 
-    <!-- 2. ABOUT ALKARI -->
-    <section id="about" class="container">
-        <div class="split-section">
-            <div class="split-text">
-                <h2 class="section-title">More Than a Career, It's a Journey</h2>
-                <p style="color: var(--text-gray); font-size: 1.1rem;">At Alkari Group, we believe that great organizations are built by great people. We provide opportunities for talented individuals to grow, innovate, and contribute to meaningful projects across our business sectors.</p>
+    <!-- INTERACTIVE GEN-Z CAREER & SEARCH SECTION -->
+    <section id="careers">
+        <div class="careers-section">
+            <div class="section-header">
+                <h2>Open Positions</h2>
+                <div class="line"></div>
             </div>
-            <div class="split-image">
-                <span>[ Foto Kantor / Tim Profesional ]</span>
-            </div>
-        </div>
-    </section>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 650px; margin: -1.5rem auto 2.5rem auto; font-size: 0.95rem;">
+                Looking for your dream role? Type keywords below or click straight on any job card to apply instantly! 🚀✨
+            </p>
 
-    <!-- 3. WHY JOIN US -->
-    <section class="container" style="padding-top: 0;">
-        <div class="why-us">
-            <h2 class="section-title">Why Join Alkari Group?</h2>
-            
-            <div class="grid-4">
-                <div class="feature-card">
-                    <h3>Growth Opportunity</h3>
-                    <p>Develop your skills through challenging projects and continuous learning.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Collaborative Culture</h3>
-                    <p>Work with passionate professionals in a dynamic environment.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Strategic Impact</h3>
-                    <p>Be part of initiatives that create meaningful business impact.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Future-Oriented</h3>
-                    <p>Grow with a company committed to innovation and sustainability.</p>
-                </div>
+            <!-- Search Bar -->
+            <div class="career-search-box">
+                <svg class="career-search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="jobSearchInput" class="career-search-input" placeholder="Search roles (e.g., Legal Analyst, Growth Strategist, Venture)...">
             </div>
-        </div>
-    </section>
 
-    <!-- 4. OPEN POSITIONS -->
-    <section id="positions" class="container open-positions" style="padding-top: 40px;">
-        <h2 class="section-title">Explore Opportunities</h2>
-        <p class="section-subtitle">Find your next opportunity and become part of Alkari Group.</p>
-        
-        <div class="job-list">
-            <!-- Job 1 -->
-            <div class="job-card">
-                <div class="job-info">
-                    <h3>Legal Associate</h3>
-                    <div class="job-meta">
-                        <span>Legal & Corporate Affairs</span>
-                        <span>Jakarta, Indonesia</span>
-                        <span class="tag">Full Time</span>
+            <!-- Job Openings Grid -->
+            <div class="jobs-grid" id="jobsGrid">
+                <div class="job-card" data-title="Legal Analyst" data-desc="Help research corporate regulations & strategic legal docs with a super flexible, modern hybrid work setup.">
+                    <div>
+                        <span class="job-tag">Legal Team</span>
+                        <h4>Legal Analyst</h4>
+                        <p>Full-time • South Jakarta / Hybrid</p>
                     </div>
+                    <span class="job-details-link">View Details & Apply &rarr;</span>
                 </div>
-                <a href="#" class="btn btn-primary" style="padding: 10px 24px;">Apply Now</a>
-            </div>
 
-            <!-- Job 2 -->
-            <div class="job-card">
-                <div class="job-info">
-                    <h3>Business Development Associate</h3>
-                    <div class="job-meta">
-                        <span>Alkari Ventures</span>
-                        <span>Jakarta, Indonesia</span>
-                        <span class="tag">Full Time</span>
+                <div class="job-card" data-title="Growth Strategist" data-desc="Design scaling strategies for our holding business platforms using data-driven insights and a creative mindset.">
+                    <div>
+                        <span class="job-tag">Consulting</span>
+                        <h4>Growth Strategist</h4>
+                        <p>Full-time • Central Jakarta</p>
                     </div>
+                    <span class="job-details-link">View Details & Apply &rarr;</span>
                 </div>
-                <a href="#" class="btn btn-primary" style="padding: 10px 24px;">Apply Now</a>
-            </div>
 
-            <!-- Job 3 (General / Basic) -->
-            <div class="job-card">
-                <div class="job-info">
-                    <h3>General Administration</h3>
-                    <div class="job-meta">
-                        <span>Operations & Support</span>
-                        <span>Jakarta, Indonesia</span>
-                        <span class="tag">Full Time</span>
+                <div class="job-card" data-title="Venture Associate" data-desc="Analyze startup pitch decks, research tech trends, and collaborate directly with innovative founders.">
+                    <div>
+                        <span class="job-tag">Ventures</span>
+                        <h4>Venture Associate</h4>
+                        <p>Full-time • Jakarta / Remote-friendly</p>
                     </div>
+                    <span class="job-details-link">View Details & Apply &rarr;</span>
                 </div>
-                <a href="#" class="btn btn-primary" style="padding: 10px 24px;">Apply Now</a>
+            </div>
+
+            <div id="noResultsMsg" class="no-results-msg">
+                ✨ Oops, no openings match that keyword right now. Try searching for something else!
             </div>
         </div>
     </section>
 
-    <!-- 5. TALENT COMMUNITY -->
-    <section class="container talent-community">
-        <div class="talent-box">
-            <h2 class="section-title" style="color: #FFF;">Didn't Find the Right Position?</h2>
-            <p>We are always looking for talented individuals who share our vision. Send us your profile and we will keep you updated for future opportunities.</p>
-            <a href="mailto:recruitment@alkari.asia" class="btn" style="background-color: #FFF; color: #111827;">Submit Your Profile</a>
-        </div>
-    </section>
-
-    <!-- 6. LEADERSHIP / CULTURE -->
-    <section class="container" style="padding-top: 0;">
-        <div class="split-section reverse">
-            <div class="split-text">
-                <h2 class="section-title">Grow With Us</h2>
-                <p style="color: var(--text-gray); font-size: 1.1rem;">At Alkari Group, every individual plays an important role in building the future. We value integrity, excellence, collaboration, and continuous improvement.</p>
-            </div>
-            <div class="split-image">
-                <span>[ Foto Lingkungan Kerja ]</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. FOOTER -->
-    <footer>
-        <div class="container" style="padding: 0;">
-            <!-- Tagline Global -->
-            <div class="footer-headline">
-                Thriving in Ad(ventures),<br>turning Vision Into Reality.
-            </div>
-            
-            <div class="footer-logo">Alkari Group</div>
-            <div class="footer-tagline">Building Businesses. Creating Impact.</div>
-            
-            <div class="footer-links">
-                <a href="mailto:careers@alkari.asia">careers@alkari.asia</a>
-                <a href="https://www.linkedin.com/company/alkarigroup" target="_blank">LinkedIn</a>
-                <a href="#">Instagram</a>
-            </div>
-            
-            <div class="copyright">
-                &copy; 2026 Alkara Indonesia Megapersada. All rights reserved.
-            </div>
-        </div>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2026 PT Alkara Indonesia Megapersada. All Rights Reserved. Built with Gen-Z Energy ⚡</p>
     </footer>
 
+    <!-- Job Detail / Apply Modal -->
+    <div id="jobModal" class="modal-overlay">
+        <div class="modal-content">
+            <span id="closeJobModal" class="close-btn">&times;</span>
+            <span class="job-tag" id="modalJobTag" style="margin-top: 0.5rem; display:inline-block;">Role</span>
+            <h2 id="modalJobTitle" style="font-size: 1.6rem; margin-bottom: 0.5rem; color: #0f172a;">Job Title</h2>
+            <p id="modalJobDesc" style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.6;"></p>
+            
+            <form id="applyForm">
+                <p style="font-size: 0.85rem; font-weight: 700; color: #0f172a; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Quick Apply Form 🚀</p>
+                <div class="input-group"><input type="text" placeholder="Full Name" required></div>
+                <div class="input-group"><input type="email" placeholder="Your Email" required></div>
+                <div class="input-group"><input type="text" placeholder="LinkedIn / Portfolio Link (Optional)"></div>
+                <button type="submit" class="submit-btn">Submit Application 🎯</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger'), navLinks = document.getElementById('nav-links');
+        const toggleMenu = () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('active'); };
+        hamburger.addEventListener('click', toggleMenu);
+
+        // Job Details Modal Controls
+        const jobModal = document.getElementById('jobModal');
+        const closeJobModal = document.getElementById('closeJobModal');
+        const modalJobTitle = document.getElementById('modalJobTitle');
+        const modalJobDesc = document.getElementById('modalJobDesc');
+        const modalJobTag = document.getElementById('modalJobTag');
+
+        document.querySelectorAll('.job-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.getAttribute('data-title');
+                const desc = card.getAttribute('data-desc');
+                const tag = card.querySelector('.job-tag').textContent;
+
+                modalJobTitle.textContent = title;
+                modalJobDesc.textContent = desc;
+                modalJobTag.textContent = tag;
+
+                jobModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const closeJobModalFn = () => { jobModal.classList.remove('active'); document.body.style.overflow = 'auto'; };
+        closeJobModal.addEventListener('click', closeJobModalFn);
+        window.addEventListener('click', (e) => { if (e.target === jobModal) closeJobModalFn(); });
+
+        // Interactive Live Search Bar
+        const searchInput = document.getElementById('jobSearchInput');
+        const jobsGrid = document.getElementById('jobsGrid');
+        const jobCards = jobsGrid.querySelectorAll('.job-card');
+        const noResultsMsg = document.getElementById('noResultsMsg');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            jobCards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                const desc = card.getAttribute('data-desc').toLowerCase();
+                
+                if (title.includes(query) || desc.includes(query)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResultsMsg.style.display = 'block';
+            } else {
+                noResultsMsg.style.display = 'none';
+            }
+        });
+
+        // Form Submission Alert
+        document.getElementById('applyForm').addEventListener('submit', (e) => { 
+            e.preventDefault(); 
+            alert("Yay! Your application has been sent to the Alkari Group team. Good luck! 🚀✨"); 
+            closeJobModalFn(); 
+            e.target.reset(); 
+        });
+    </script>
 </body>
 </html>
