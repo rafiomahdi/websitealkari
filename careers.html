@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alkari Group | Thriving Ad(venture), Turning Vision Into Reality.</title>
-    <meta name="description" content="Alkari Group is a premier Jakarta-based holding company established in 2018, specializing in legal advisory, strategic consulting, venture investment, energy partnerships, and workforce solutions.">
+    <title>Alkara Indonesia | Always Awake. Thriving in Ad(ventures)..</title>
+    <meta name="description" content="Alkara Indonesia is a premier Jakarta-based holding company established in 2018, specializing in legal advisory, strategic consulting, venture investment, energy partnerships, and workforce solutions.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,6 +38,16 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Low-opacity Doodle / Ukiran Pattern Overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%233b82f6' fill-opacity='0.025' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: -1;
+            pointer-events: none;
+        }
+
         /* Bright Ambient Glow Effect */
         body::before {
             content: ''; position: fixed; top: -15%; left: -15%; width: 60vw; height: 60vw;
@@ -48,15 +58,27 @@
         h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; letter-spacing: -0.02em; color: #0f172a; }
         a, button { color: var(--text-primary); text-decoration: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
 
-        /* Navigation */
+        /* Navigation - Adjusted for strict 80-90px height and overflowing 125px logo */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 1.2rem 5%;
+            position: fixed; top: 0; width: 100%; height: 85px; padding: 0 5%;
             display: flex; justify-content: space-between; align-items: center;
+            overflow: visible;
             background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000; transition: all 0.3s ease;
         }
-        nav.scrolled { padding: 0.9rem 5%; background: rgba(255, 255, 255, 0.95); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); }
+        nav.scrolled { background: rgba(255, 255, 255, 0.95); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); }
+        .brand { display: flex; align-items: center; position: relative; overflow: visible; height: 100%; }
+        .brand-logo { 
+            height: 125px; 
+            width: auto; 
+            object-fit: contain; 
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            left: 0;
+            pointer-events: auto;
+        }
         .brand-fallback { font-size: 1.4rem; letter-spacing: -0.03em; font-family: var(--font-heading); font-weight: 700; color: #0f172a; }
 
         .nav-links { display: flex; gap: 2rem; align-items: center; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; }
@@ -77,20 +99,57 @@
             box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3); transform: translateY(-2px);
         }
 
-        /* Hero Section */
-        .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; }
+        /* Hero Section Enhancements */
+        .hero { 
+            min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; 
+            overflow: hidden;
+        }
+        .hero-bg-canvas {
+            position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
+        }
+        .gradient-mesh {
+            position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(147,51,234,0.05) 50%, transparent 70%);
+            top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(60px); animation: floatMesh 10s ease-in-out infinite alternate;
+        }
+        @keyframes floatMesh {
+            0% { transform: translate(-55%, -45%) scale(1); }
+            100% { transform: translate(-45%, -55%) scale(1.15); }
+        }
+        .glowing-particle {
+            position: absolute; background: #3b82f6; border-radius: 50%; filter: blur(8px); opacity: 0.4;
+            animation: particleFloat 8s linear infinite;
+        }
+        @keyframes particleFloat {
+            0% { transform: translateY(0px) translateX(0px); opacity: 0.2; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-120px) translateX(60px); opacity: 0; }
+        }
+        .floating-blob {
+            position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.3; z-index: -1;
+            animation: blobPulse 6s ease-in-out infinite alternate;
+        }
+        .blob-1 { width: 300px; height: 300px; background: #60a5fa; top: 10%; left: 10%; animation-delay: 0s; }
+        .blob-2 { width: 350px; height: 350px; background: #a78bfa; bottom: 10%; right: 10%; animation-delay: 3s; }
+        @keyframes blobPulse {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(20px, -20px); }
+        }
+
         .hero-badge {
             background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.2);
             padding: 0.4rem 1.2rem; border-radius: 30px; font-size: 0.8rem; font-weight: 500; color: #2563eb;
             margin-bottom: 1.5rem; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 8px;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+            cursor: pointer;
         }
+        .hero-badge:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2); }
         .hero-badge span { width: 6px; height: 6px; background: #2563eb; border-radius: 50%; box-shadow: 0 0 8px #2563eb; }
         .hero h1 { font-size: clamp(2.8rem, 5.5vw, 5.5rem); line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
         .hero h1 strong { background: linear-gradient(135deg, #0f172a 20%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
         .hero p { font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
 
-        section { padding: 5rem 5%; max-width: 1400px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 3rem; }
+        section { padding: 3rem 5%; max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 0rem; }
         .section-header h2 { font-size: clamp(2rem, 3.5vw, 2.5rem); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
         .section-header .line { width: 40px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-color), transparent); margin: 0 auto; }
 
@@ -110,7 +169,7 @@
 
         .career-search-box {
             max-width: 650px;
-            margin: 0 auto 3rem auto;
+            margin: 0 auto 1.5rem auto;
             position: relative;
         }
 
@@ -128,8 +187,7 @@
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.01);
         }
 
-        .career-search-input::placeholder { color: #94a3b8; }
-
+        .career-search-input::placeholder { color: #94a3b8; transition: opacity 0.3s ease; }
         .career-search-input:focus {
             border-color: #3b82f6;
             background: #ffffff;
@@ -146,7 +204,28 @@
             stroke: #64748b;
             fill: none;
             stroke-width: 2;
+            transition: stroke 0.3s ease;
         }
+        .career-search-box:focus-within .career-search-icon { stroke: #3b82f6; }
+
+        .search-shortcut-hint {
+            position: absolute; right: 1.4rem; top: 50%; transform: translateY(-50%);
+            background: #e2e8f0; color: #475569; font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 6px;
+            border: 1px solid rgba(0,0,0,0.05); pointer-events: none;
+        }
+
+        /* Search Suggestions & Trending */
+        .search-suggestions-container {
+            max-width: 650px; margin: 0 auto 3rem auto; display: flex; flex-direction: column; gap: 0.8rem;
+        }
+        .trending-chips {
+            display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; align-items: center; font-size: 0.8rem; color: var(--text-secondary);
+        }
+        .trend-chip {
+            background: #f1f5f9; border: 1px solid var(--border-color); padding: 0.3rem 0.9rem; border-radius: 20px; cursor: pointer; font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .trend-chip:hover { background: #3b82f6; color: #fff; border-color: #3b82f6; transform: translateY(-2px); }
 
         .jobs-grid {
             display: grid;
@@ -169,12 +248,14 @@
         }
 
         .job-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-6px) scale(1.01);
             background: #ffffff;
             border-color: #3b82f6;
             box-shadow: 0 15px 35px rgba(59, 130, 246, 0.08);
         }
 
+        /* Job Card Badges & Tiny Stats */
+        .job-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 6px; }
         .job-tag {
             display: inline-block;
             font-size: 0.7rem;
@@ -186,9 +267,14 @@
             border: 1px solid rgba(59, 130, 246, 0.2);
             border-radius: 20px;
             color: #2563eb;
-            margin-bottom: 1.2rem;
-            width: fit-content;
         }
+        .job-status-badges { display: flex; gap: 5px; }
+        .badge-pill {
+            font-size: 0.65rem; font-weight: 700; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 6px; letter-spacing: 0.05em;
+        }
+        .badge-hot { background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; }
+        .badge-new { background: #dcfce7; color: #16a34a; border: 1px solid #86efac; }
+        .badge-remote { background: #e0f2fe; color: #0284c7; border: 1px solid #7dd3fc; }
 
         .job-card h4 {
             font-size: 1.35rem;
@@ -199,8 +285,12 @@
         .job-card p {
             font-size: 0.9rem;
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             line-height: 1.6;
+        }
+
+        .job-tiny-stats {
+            display: flex; gap: 1rem; font-size: 0.75rem; color: #64748b; margin-bottom: 1.5rem; border-top: 1px dashed var(--border-color); padding-top: 0.8rem;
         }
 
         .job-details-link {
@@ -229,6 +319,66 @@
             display: none;
         }
 
+        /* ==========================================================================
+           ENHANCED SECTIONS (Journey, Why Join, Numbers, Experience)
+           ========================================================================== */
+        
+        /* 4. Career Journey */
+        .journey-container {
+            display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 2rem; position: relative; flex-wrap: wrap;
+        }
+        .journey-step {
+            flex: 1; min-width: 180px; background: #ffffff; border: 1px solid var(--border-color); border-radius: 16px; padding: 1.8rem 1.2rem; text-align: center;
+            position: relative; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+        .journey-step:hover { transform: translateY(-5px); border-color: #3b82f6; box-shadow: 0 10px 30px rgba(59,130,246,0.1); }
+        .journey-step-num {
+            width: 32px; height: 32px; background: rgba(59,130,246,0.1); color: #2563eb; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto; font-size: 0.85rem;
+        }
+        .journey-step h4 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+        .journey-step p { font-size: 0.8rem; color: var(--text-secondary); }
+
+        /* 5. Why Join Alkara */
+        .why-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem;
+        }
+        .why-card {
+            background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; padding: 2.2rem;
+            transition: all 0.3s ease; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+        .why-card:hover { transform: translateY(-5px); border-color: #3b82f6; box-shadow: 0 12px 35px rgba(59,130,246,0.08); background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); }
+        .why-icon { font-size: 2.2rem; margin-bottom: 1rem; display: inline-block; }
+        .why-card h4 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .why-card p { font-size: 0.9rem; color: var(--text-secondary); }
+
+        /* 7. Interactive Numbers */
+        .numbers-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;
+        }
+        .number-card {
+            background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; padding: 2.5rem 1.5rem; text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02); transition: all 0.3s ease;
+        }
+        .number-card:hover { transform: translateY(-5px); border-color: #3b82f6; box-shadow: 0 10px 30px rgba(59,130,246,0.08); }
+        .counter-val { font-size: 3rem; font-family: var(--font-heading); font-weight: 700; color: #0f172a; margin-bottom: 0.3rem; background: linear-gradient(135deg, #0f172a 20%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .counter-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); font-weight: 600; }
+
+        /* 8. Candidate Experience Timeline */
+        .timeline {
+            position: relative; max-width: 800px; margin: 0 auto; padding-left: 2rem; border-left: 2px solid rgba(59,130,246,0.2);
+        }
+        .timeline-item {
+            position: relative; margin-bottom: 2.5rem; background: #ffffff; border: 1px solid var(--border-color); border-radius: 16px; padding: 1.8rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02); transition: all 0.3s ease;
+        }
+        .timeline-item:hover { border-color: #3b82f6; transform: translateX(5px); box-shadow: 0 8px 25px rgba(59,130,246,0.08); }
+        .timeline-dot {
+            position: absolute; left: -2.6rem; top: 1.8rem; width: 16px; height: 16px; background: #3b82f6; border-radius: 50%; border: 3px solid #f8fafc;
+            box-shadow: 0 0 10px rgba(59,130,246,0.5);
+        }
+        .timeline-item h4 { font-size: 1.15rem; margin-bottom: 0.4rem; color: #0f172a; }
+        .timeline-item p { font-size: 0.9rem; color: var(--text-secondary); }
+
         /* Modal Overlays */
         .modal-overlay { display: none; position: fixed; inset: 0; background-color: rgba(15, 23, 42, 0.4); backdrop-filter: blur(8px); z-index: 2000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; padding: 5%; }
         .modal-overlay.active { display: flex; opacity: 1; }
@@ -252,6 +402,32 @@
         }
         .submit-btn:hover { background-color: #3b82f6; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25); }
 
+        /* Toast Notifications */
+        #toastContainer { position: fixed; bottom: 2rem; right: 2rem; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+        .toast {
+            background: #0f172a; color: #ffffff; padding: 1rem 1.5rem; border-radius: 12px; font-size: 0.85rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex; align-items: center; gap: 12px; animation: slideInToast 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; border-left: 4px solid #3b82f6;
+        }
+        @keyframes slideInToast {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* 10. Footer CTA Section */
+        .footer-cta-box {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 28px; padding: 4rem 2rem; text-align: center; color: #ffffff; margin-bottom: 4rem; position: relative; overflow: hidden;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15);
+        }
+        .footer-cta-box h2 { color: #ffffff; font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 1rem; }
+        .footer-cta-box p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 2rem; }
+        .cta-btn-glow {
+            background: #3b82f6; color: #ffffff; border: none; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--font-heading); cursor: pointer;
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.5); transition: all 0.3s ease; display: inline-block;
+        }
+        .cta-btn-glow:hover { background: #2563eb; transform: translateY(-3px); box-shadow: 0 0 35px rgba(59, 130, 246, 0.8); }
+
         /* Footer */
         .site-footer {
             background: #ffffff;
@@ -268,15 +444,20 @@
             .nav-links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; background: #ffffff; flex-direction: column; justify-content: center; gap: 2rem; transition: right 0.3s ease; border-left: 1px solid var(--border-color); box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
             .nav-links.active { right: 0; }
             .careers-section { padding: 2.5rem 1.5rem; }
+            .journey-container { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Toast Notification Container -->
+    <div id="toastContainer"></div>
+
     <!-- Navigation Bar -->
     <nav id="navbar">
         <a href="#" class="brand">
-            <span class="brand-fallback">ALKARI GROUP</span>
+            <img src="assets/image/logo-alkari-hitam.png" alt="Alkari Logo" class="brand-logo" onerror="this.style.display='none'; document.getElementById('brandFallback').style.display='block';">
+            <span id="brandFallback" class="brand-fallback" style="display:none;">ALKARi GROUP</span>
         </a>
         <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
         <div class="nav-links" id="nav-links">
@@ -285,69 +466,254 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-badge"><span></span> We Are Hiring Gen-Z Talents</div>
+    <!-- 1. Hero Section -->
+    <section class="hero" id="heroSection">
+        <div class="hero-bg-canvas">
+            <div class="gradient-mesh"></div>
+            <div class="floating-blob blob-1"></div>
+            <div class="floating-blob blob-2"></div>
+            <div class="glowing-particle" style="top: 20%; left: 30%; width: 12px; height: 12px; animation-duration: 7s;"></div>
+            <div class="glowing-particle" style="top: 70%; left: 75%; width: 16px; height: 16px; animation-duration: 9s;"></div>
+            <div class="glowing-particle" style="top: 40%; left: 85%; width: 10px; height: 10px; animation-duration: 6s;"></div>
+        </div>
+        <div class="hero-badge" id="heroBadge"><span></span> Learn. Earn. Become an Alkarian 🚀</div>
         <h1>Shape the Future of Innovation, <strong>Your Way</strong>.</h1>
         <p>Ready to level up your career? Join Jakarta's most dynamic corporate ecosystem. Flexible, impact-driven, and zero boring vibes!</p>
     </section>
 
-    <!-- INTERACTIVE GEN-Z CAREER & SEARCH SECTION -->
+    <!-- 2 & 3. Search Experience & Job Cards -->
     <section id="careers">
         <div class="careers-section">
             <div class="section-header">
                 <h2>Open Positions</h2>
                 <div class="line"></div>
             </div>
-            <p style="text-align: center; color: var(--text-secondary); max-width: 650px; margin: -1.5rem auto 2.5rem auto; font-size: 0.95rem;">
-                Looking for your dream role? Type keywords below or click straight on any job card to apply instantly! 🚀✨
+            <p style="text-align: center; color: var(--text-secondary); max-width: 650px; margin: -1.5rem auto 2rem auto; font-size: 0.95rem;">
+                Ready to become an Alkarian? Find your next Ad(ventures) here. 🚀
             </p>
 
-            <!-- Search Bar -->
+            <!-- Search Bar with Typing Placeholder & Shortcuts -->
             <div class="career-search-box">
                 <svg class="career-search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="jobSearchInput" class="career-search-input" placeholder="Search roles (e.g., Legal Analyst, Growth Strategist, Venture)...">
+                <input type="text" id="jobSearchInput" class="career-search-input" placeholder="Discover your Alkarian journey......">
+                <span class="search-shortcut-hint">⌘K</span>
+            </div>
+
+            <!-- Trending roles / suggestions chips -->
+            <div class="search-suggestions-container">
+                <div class="trending-chips">
+                    <span>Trending:</span>
+                    <div class="trend-chip" onclick="applySearchPreset('Legal')">Legal Analyst</div>
+                    <div class="trend-chip" onclick="applySearchPreset('Risk')">Risk Analyst</div>
+                    <div class="trend-chip" onclick="applySearchPreset('Marketing')">Marketing</div>
+                    <div class="trend-chip" onclick="applySearchPreset('Remote')">Remote-friendly</div>
+                </div>
             </div>
 
             <!-- Job Openings Grid -->
             <div class="jobs-grid" id="jobsGrid">
                 <div class="job-card" data-title="Legal Analyst" data-desc="Help research corporate regulations & strategic legal docs with a super flexible, modern hybrid work setup.">
                     <div>
-                        <span class="job-tag">Legal Team</span>
-                        <h4>Legal Analyst</h4>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Legal Advisory</span>
+                            <div class="job-status-badges">
+                                <span class="badge-pill badge-hot">HOT</span>
+                                <span class="badge-pill badge-remote">REMOTE</span>
+                            </div>
+                        </div>
+                        <h4>Employment Counsel</h4>
                         <p>Full-time • South Jakarta / Hybrid</p>
                     </div>
-                    <span class="job-details-link">View Details & Apply &rarr;</span>
+                    <div>
+                        <div class="job-tiny-stats">
+                            <span>👥 24 applicants</span>
+                            <span>👀 142 views</span>
+                            <span>⚡ Posted today</span>
+                        </div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
                 </div>
 
                 <div class="job-card" data-title="Growth Strategist" data-desc="Design scaling strategies for our holding business platforms using data-driven insights and a creative mindset.">
                     <div>
-                        <span class="job-tag">Consulting</span>
-                        <h4>Growth Strategist</h4>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Consulting</span>
+                            <div class="job-status-badges">
+                                <span class="badge-pill badge-new">NEW</span>
+                            </div>
+                        </div>
+                        <h4>Risk Analyst</h4>
                         <p>Full-time • Central Jakarta</p>
                     </div>
-                    <span class="job-details-link">View Details & Apply &rarr;</span>
+                    <div>
+                        <div class="job-tiny-stats">
+                            <span>👥 12 applicants</span>
+                            <span>👀 98 views</span>
+                            <span>⚡ Fast response</span>
+                        </div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
                 </div>
 
                 <div class="job-card" data-title="Venture Associate" data-desc="Analyze startup pitch decks, research tech trends, and collaborate directly with innovative founders.">
                     <div>
-                        <span class="job-tag">Ventures</span>
-                        <h4>Venture Associate</h4>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Ventures</span>
+                            <div class="job-status-badges">
+                                <span class="badge-pill badge-hot">POPULAR</span>
+                            </div>
+                        </div>
+                        <h4>Marketing Associate</h4>
                         <p>Full-time • Jakarta / Remote-friendly</p>
                     </div>
-                    <span class="job-details-link">View Details & Apply &rarr;</span>
+                    <div>
+                        <div class="job-tiny-stats">
+                            <span>👥 45 applicants</span>
+                            <span>👀 310 views</span>
+                            <span>⚡ Posted today</span>
+                        </div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
                 </div>
             </div>
 
+            <!-- 9. Empty State -->
             <div id="noResultsMsg" class="no-results-msg">
-                ✨ Oops, no openings match that keyword right now. Try searching for something else!
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">👀</div>
+                <h4 style="color: #0f172a; margin-bottom: 0.4rem; font-size: 1.1rem;">Looks like your next Ad(venture) is hiding</h4>
+                <p>Try searching with another keyword or explore our trending roles above!</p>
             </div>
+        </div>
+    </section>
+
+    <!-- 4. Career Journey Section -->
+    <section>
+        <div class="section-header">
+            <h2>Career Journey</h2>
+            <div class="line"></div>
+        </div>
+        <div class="journey-container">
+            <div class="journey-step">
+                <div class="journey-step-num">01</div>
+                <h4>Discover</h4>
+                <p>Find a role matching your superpower.</p>
+            </div>
+            <div class="journey-step">
+                <div class="journey-step-num">02</div>
+                <h4>Apply</h4>
+                <p>Submit your quick application.</p>
+            </div>
+            <div class="journey-step">
+                <div class="journey-step-num">03</div>
+                <h4>Interview</h4>
+                <p>Chat with our dynamic team.</p>
+            </div>
+            <div class="journey-step">
+                <div class="journey-step-num">04</div>
+                <h4>Welcome</h4>
+                <p>Onboard into the holding family.</p>
+            </div>
+            <div class="journey-step" style="border-color: #3b82f6; background: rgba(59,130,246,0.02);">
+                <div class="journey-step-num" style="background: #3b82f6; color: #fff;">05</div>
+                <h4>Become an Alkarian 🚀</h4>
+                <p>Thrive in endless Ad(ventures).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Why Join Alkara Section -->
+    <section>
+        <div class="section-header">
+            <h2>Why Join Alkara</h2>
+            <div class="line"></div>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">⚡</div>
+                <h4>Zero Boring Vibes</h4>
+                <p>Fast-paced startup energy blended with robust stability. Every day brings fresh growth and exciting challenges.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">💼</div>
+                <h4>Hybrid & Flexible</h4>
+                <p>Work where you produce your best creative output. We value real impact and autonomy over rigid office hours.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🚀</div>
+                <h4>Accelerated Growth</h4>
+                <p>Direct exposure to multiple business verticals across legal, consulting, venture investments, and energy sectors.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Interactive Numbers Section -->
+    <section>
+        <div class="section-header">
+            <h2>Alkara in Numbers</h2>
+            <div class="line"></div>
+        </div>
+        <div class="numbers-grid">
+            <div class="number-card">
+                <div class="counter-val" data-target="15">0</div>
+                <div class="counter-label">Open Roles</div>
+            </div>
+            <div class="number-card">
+                <div class="counter-val" data-target="120">0</div>
+                <div class="counter-label">Candidates Hired</div>
+            </div>
+            <div class="number-card">
+                <div class="counter-val" data-target="45">0</div>
+                <div class="counter-label">Partner Companies</div>
+            </div>
+            <div class="number-card">
+                <div class="counter-val" data-target="85">0</div>
+                <div class="counter-label">Projects Completed</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Candidate Experience Timeline -->
+    <section>
+        <div class="section-header">
+            <h2>Candidate Experience</h2>
+            <div class="line"></div>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h4>1. Application Review</h4>
+                <p>Our talent team reviews your portfolio and background within 48 hours. Fast and transparent communication guaranteed.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h4>2. Culture & Skill Alignment</h4>
+                <p>A friendly, conversational chat with team leads to discuss your aspirations, background, and cultural fit.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h4>3. Strategic Collaboration Task</h4>
+                <p>A brief, practical case study or portfolio deep-dive designed to showcase your real-world problem-solving skills.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h4>4. Welcome Offer & Onboarding</h4>
+                <p>Receive your official offer package and start your unforgettable Alkarian Ad(venture)!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Footer CTA Section -->
+    <section>
+        <div class="footer-cta-box">
+            <h2>Ready to become an Alkarian?</h2>
+            <p>Find your next Ad(venture) here and shape the future of Jakarta's innovative business ecosystem.</p>
+            <button class="cta-btn-glow" onclick="document.getElementById('careers').scrollIntoView({behavior: 'smooth'})">Explore Open Roles ⚡</button>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="site-footer">
-        <p>&copy; 2026 PT Alkara Indonesia Megapersada. All Rights Reserved. Built with Gen-Z Energy ⚡</p>
+        <p>&copy; 2026 PT Alkara Indonesia Megapersada. All Rights Reserved.</p>
     </footer>
 
     <!-- Job Detail / Apply Modal -->
@@ -360,8 +726,8 @@
             
             <form id="applyForm">
                 <p style="font-size: 0.85rem; font-weight: 700; color: #0f172a; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Quick Apply Form 🚀</p>
-                <div class="input-group"><input type="text" placeholder="Full Name" required></div>
-                <div class="input-group"><input type="email" placeholder="Your Email" required></div>
+                <div class="input-group"><input type="text" id="applicantName" placeholder="Full Name" required></div>
+                <div class="input-group"><input type="email" id="applicantEmail" placeholder="Your Email" required></div>
                 <div class="input-group"><input type="text" placeholder="LinkedIn / Portfolio Link (Optional)"></div>
                 <button type="submit" class="submit-btn">Submit Application 🎯</button>
             </form>
@@ -377,6 +743,33 @@
         const hamburger = document.getElementById('hamburger'), navLinks = document.getElementById('nav-links');
         const toggleMenu = () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('active'); };
         hamburger.addEventListener('click', toggleMenu);
+
+        // Toast Notification System
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<span>⚡</span> <span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(20px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // Hero Parallax & Mouse Move Reactivity
+        const heroSection = document.getElementById('heroSection');
+        heroSection.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const xVal = (clientX / window.innerWidth - 0.5) * 20;
+            const yVal = (clientY / window.innerHeight - 0.5) * 20;
+            const blobs = heroSection.querySelectorAll('.floating-blob');
+            blobs.forEach((blob, index) => {
+                const factor = (index + 1) * 0.5;
+                blob.style.transform = `translate(${xVal * factor}px, ${yVal * factor}px)`;
+            });
+        });
 
         // Job Details Modal Controls
         const jobModal = document.getElementById('jobModal');
@@ -404,11 +797,39 @@
         closeJobModal.addEventListener('click', closeJobModalFn);
         window.addEventListener('click', (e) => { if (e.target === jobModal) closeJobModalFn(); });
 
-        // Interactive Live Search Bar
+        // Interactive Live Search Bar & Typing Placeholder
         const searchInput = document.getElementById('jobSearchInput');
         const jobsGrid = document.getElementById('jobsGrid');
         const jobCards = jobsGrid.querySelectorAll('.job-card');
         const noResultsMsg = document.getElementById('noResultsMsg');
+
+        const placeholders = [
+            "Discover your Alkarian journey......",
+            "Search for Legal, Consulting, or Ventures...",
+            "Find your next Ad(venture) 🚀..."
+        ];
+        let pIndex = 0, charIndex = 0, isDeleting = false;
+        
+        function typePlaceholder() {
+            const current = placeholders[pIndex];
+            if (isDeleting) {
+                searchInput.setAttribute('placeholder', current.substring(0, charIndex - 1));
+                charIndex--;
+                if (charIndex === 0) { isDeleting = false; pIndex = (pIndex + 1) % placeholders.length; }
+            } else {
+                searchInput.setAttribute('placeholder', current.substring(0, charIndex + 1));
+                charIndex++;
+                if (charIndex === current.length) { isDeleting = true; setTimeout(typePlaceholder, 1500); return; }
+            }
+            setTimeout(typePlaceholder, isDeleting ? 50 : 100);
+        }
+        setTimeout(typePlaceholder, 1000);
+
+        function applySearchPreset(keyword) {
+            searchInput.value = keyword;
+            searchInput.dispatchEvent(new Event('input'));
+            showToast(`Filtered roles by "${keyword}" 🔍`);
+        }
 
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
@@ -417,8 +838,9 @@
             jobCards.forEach(card => {
                 const title = card.getAttribute('data-title').toLowerCase();
                 const desc = card.getAttribute('data-desc').toLowerCase();
+                const tag = card.querySelector('.job-tag').textContent.toLowerCase();
                 
-                if (title.includes(query) || desc.includes(query)) {
+                if (title.includes(query) || desc.includes(query) || tag.includes(query)) {
                     card.style.display = 'flex';
                     visibleCount++;
                 } else {
@@ -433,10 +855,51 @@
             }
         });
 
-        // Form Submission Alert
+        // Keyboard Shortcut ⌘K for Search focus
+        window.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+                showToast("Search focused via shortcut ⚡");
+            }
+        });
+
+        // Animated Counters on Scroll
+        const counters = document.querySelectorAll('.counter-val');
+        let animated = false;
+        
+        function runCounters() {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let current = 0;
+                const increment = target / 30;
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.ceil(current);
+                        setTimeout(updateCounter, 40);
+                    } else {
+                        counter.textContent = target + "+";
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY + window.innerHeight;
+            const targetPos = document.querySelector('.numbers-grid').offsetTop;
+            if (scrollPos > targetPos && !animated) {
+                animated = true;
+                runCounters();
+            }
+        });
+
+        // Form Submission with Delightful Toast Notification
         document.getElementById('applyForm').addEventListener('submit', (e) => { 
             e.preventDefault(); 
-            alert("Yay! Your application has been sent to the Alkari Group team. Good luck! 🚀✨"); 
+            const name = document.getElementById('applicantName').value;
+            showToast(`Yay ${name}! Your application has been sent to Alkara. Good luck! 🚀✨`); 
             closeJobModalFn(); 
             e.target.reset(); 
         });
