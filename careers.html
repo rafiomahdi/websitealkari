@@ -23,6 +23,8 @@
             --surface-hover: #f8fafc;
             --font-heading: 'Space Grotesk', sans-serif;
             --font-body: 'Plus Jakarta Sans', sans-serif;
+            --error-color: #ef4444;
+            --success-color: #10b981;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -56,16 +58,16 @@
         }
 
         h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; letter-spacing: -0.02em; color: #0f172a; }
-        a, button { color: var(--text-primary); text-decoration: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        a, button { color: var(--text-primary); text-decoration: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
 
-        /* Navigation - Adjusted for strict 80-90px height and overflowing 125px logo */
+        /* Navigation */
         nav {
             position: fixed; top: 0; width: 100%; height: 85px; padding: 0 5%;
             display: flex; justify-content: space-between; align-items: center;
             overflow: visible;
             background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-color);
-            z-index: 1000; transition: all 0.3s ease;
+            z-index: 1000; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         nav.scrolled { background: rgba(255, 255, 255, 0.95); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); }
         .brand { display: flex; align-items: center; position: relative; overflow: visible; height: 100%; }
@@ -82,17 +84,17 @@
         .brand-fallback { font-size: 1.4rem; letter-spacing: -0.03em; font-family: var(--font-heading); font-weight: 700; color: #0f172a; }
 
         .nav-links { display: flex; gap: 2rem; align-items: center; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; }
-        .nav-links a { color: var(--text-secondary); }
+        .nav-links a { color: var(--text-secondary); transition: color 0.2s ease; }
         .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
 
         .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; }
-        .hamburger span { width: 26px; height: 2px; background-color: var(--text-primary); transition: all 0.3s ease; border-radius: 2px; }
+        .hamburger span { width: 26px; height: 2px; background-color: var(--text-primary); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 2px; }
 
         .get-started-btn {
             background: #0f172a; border: 1px solid #0f172a;
             color: #ffffff; padding: 0.6rem 1.4rem; border-radius: 50px; cursor: pointer;
             text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.75rem; font-family: var(--font-heading); font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .get-started-btn:hover {
             background: #3b82f6; border-color: #3b82f6;
@@ -107,6 +109,15 @@
         .hero-bg-canvas {
             position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
         }
+        /* Premium Career Doodle Overlay added to Hero */
+        .hero-doodles {
+            position: absolute; inset: 0; opacity: 0.03; z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg stroke='%230f172a' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 30 h15 v-8 a4 4 0 0 1 4 -4 h10 a4 4 0 0 1 4 4 v8 h15 a4 4 0 0 1 4 4 v20 a4 4 0 0 1 -4 4 h-48 a4 4 0 0 1 -4 -4 v-20 a4 4 0 0 1 4 -4'/%3E%3Cpath d='M35 30 v-8 a4 4 0 0 1 4 -4 h10 a4 4 0 0 1 4 4 v8'/%3E%3Cpath d='M16 58 v-4 a4 4 0 0 1 4 -4 h48'/%3E%3Ccircle cx='90' cy='90' r='10'/%3E%3Cpath d='M97 97 l8 8'/%3E%3Cpath d='M80 30 l15 -15 M95 15 h-10 M95 15 v10'/%3E%3Cpath d='M20 90 h20 l10 -15 l10 10 l15 -20'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            animation: panDoodles 60s linear infinite;
+        }
+        @keyframes panDoodles { from { background-position: 0 0; } to { background-position: 120px 120px; } }
+
         .gradient-mesh {
             position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(147,51,234,0.05) 50%, transparent 70%);
             top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(60px); animation: floatMesh 10s ease-in-out infinite alternate;
@@ -139,14 +150,14 @@
             background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.2);
             padding: 0.4rem 1.2rem; border-radius: 30px; font-size: 0.8rem; font-weight: 500; color: #2563eb;
             margin-bottom: 1.5rem; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 8px;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer; position: relative; z-index: 1;
         }
         .hero-badge:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2); }
         .hero-badge span { width: 6px; height: 6px; background: #2563eb; border-radius: 50%; box-shadow: 0 0 8px #2563eb; }
-        .hero h1 { font-size: clamp(2.8rem, 5.5vw, 5.5rem); line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
+        .hero h1 { font-size: clamp(2.8rem, 5.5vw, 5.5rem); line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.03em; position: relative; z-index: 1; }
         .hero h1 strong { background: linear-gradient(135deg, #0f172a 20%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
-        .hero p { font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+        .hero p { font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--text-secondary); max-width: 600px; margin: 0 auto; position: relative; z-index: 1;}
 
         section { padding: 3rem 5%; max-width: 1400px; margin: 0 auto; }
         .section-header { text-align: center; margin-bottom: 0rem; }
@@ -171,6 +182,8 @@
             max-width: 650px;
             margin: 0 auto 1.5rem auto;
             position: relative;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 50px;
         }
 
         .career-search-input {
@@ -223,9 +236,9 @@
         }
         .trend-chip {
             background: #f1f5f9; border: 1px solid var(--border-color); padding: 0.3rem 0.9rem; border-radius: 20px; cursor: pointer; font-weight: 500;
-            transition: all 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .trend-chip:hover { background: #3b82f6; color: #fff; border-color: #3b82f6; transform: translateY(-2px); }
+        .trend-chip:hover { background: #3b82f6; color: #fff; border-color: #3b82f6; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); }
 
         .jobs-grid {
             display: grid;
@@ -239,7 +252,7 @@
             border-radius: 20px;
             padding: 2.2rem;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -252,6 +265,58 @@
             background: #ffffff;
             border-color: #3b82f6;
             box-shadow: 0 15px 35px rgba(59, 130, 246, 0.08);
+        }
+
+        /* Structured Job Modal Content (Hidden by default) */
+        .job-details-content { display: none; }
+        .job-modal-section { margin-bottom: 1.5rem; }
+        .job-modal-section h4 { font-size: 1.1rem; margin-bottom: 0.8rem; color: #0f172a; font-family: var(--font-heading); font-weight: 600; }
+        .job-modal-section p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7; }
+        .job-modal-section ul { padding-left: 1.4rem; margin-bottom: 1rem; }
+        .job-modal-section li { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.5rem; line-height: 1.6; }
+        .emp-info-list { list-style: none; padding-left: 0 !important; }
+        .emp-info-list li { border-bottom: 1px dashed var(--border-color); padding-bottom: 0.5rem; margin-bottom: 0.5rem; }
+        .emp-info-list li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .emp-info-list strong { color: #0f172a; display: inline-block; width: 140px; }
+
+        /* Dream Job CTA Specific Styles */
+        .dream-job-cta {
+            border: 2px dashed var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            min-height: 200px;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dream-job-cta:hover {
+            border-color: #3b82f6;
+            background: #ffffff;
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.08);
+        }
+        .dream-job-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+        }
+        .dream-job-cta:hover .dream-job-text {
+            gap: 16px;
+            color: #3b82f6;
+        }
+        .dream-job-text .arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dream-job-cta:hover .dream-job-text .arrow {
+            transform: translateX(4px);
+        }
+        .dream-job-cta:active {
+            transform: translateY(-2px) scale(0.99);
         }
 
         /* Job Card Badges & Tiny Stats */
@@ -269,20 +334,27 @@
             color: #2563eb;
         }
         .job-status-badges { display: flex; gap: 5px; }
+        
         .badge-pill {
             font-size: 0.65rem; font-weight: 700; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 6px; letter-spacing: 0.05em;
+            transition: transform 0.2s ease;
         }
-        .badge-hot { background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; }
-        .badge-new { background: #dcfce7; color: #16a34a; border: 1px solid #86efac; }
-        .badge-remote { background: #e0f2fe; color: #0284c7; border: 1px solid #7dd3fc; }
+        .badge-pill:hover { transform: scale(1.05); }
+        
+        /* Standardized Employment Status Badges (Strict Mapping: On-site=Red, Hybrid=Blue, Remote=Green) */
+        .badge-onsite { background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; } /* Red */
+        .badge-hybrid { background: #e0f2fe; color: #0284c7; border: 1px solid #7dd3fc; } /* Blue */
+        .badge-remote { background: #dcfce7; color: #16a34a; border: 1px solid #86efac; } /* Green */
 
         .job-card h4 {
             font-size: 1.35rem;
             margin-bottom: 0.6rem;
             color: #0f172a;
+            transition: color 0.2s ease;
         }
+        .job-card:hover h4 { color: #1d4ed8; }
 
-        .job-card p {
+        .job-card .short-desc {
             font-size: 0.9rem;
             color: var(--text-secondary);
             margin-bottom: 1.2rem;
@@ -302,7 +374,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: gap 0.3s ease;
+            transition: gap 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
         }
 
         .job-card:hover .job-details-link { gap: 12px; color: #1d4ed8; }
@@ -317,6 +389,11 @@
             color: var(--text-secondary);
             font-size: 1rem;
             display: none;
+            animation: fadeInMsg 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes fadeInMsg {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ==========================================================================
@@ -330,13 +407,29 @@
         .journey-step {
             flex: 1; min-width: 180px; background: #ffffff; border: 1px solid var(--border-color); border-radius: 16px; padding: 1.8rem 1.2rem; text-align: center;
             position: relative; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            cursor: pointer;
+            user-select: none;
         }
         .journey-step:hover { transform: translateY(-5px); border-color: #3b82f6; box-shadow: 0 10px 30px rgba(59,130,246,0.1); }
+        
+        .journey-step.active {
+            border-color: #3b82f6;
+            background: rgba(59,130,246,0.02);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59,130,246,0.1);
+        }
         .journey-step-num {
             width: 32px; height: 32px; background: rgba(59,130,246,0.1); color: #2563eb; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto; font-size: 0.85rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .journey-step h4 { font-size: 1.05rem; margin-bottom: 0.4rem; }
-        .journey-step p { font-size: 0.8rem; color: var(--text-secondary); }
+        .journey-step.active .journey-step-num {
+            background: #3b82f6;
+            color: #fff;
+        }
+        
+        .journey-step h4 { font-size: 1.05rem; margin-bottom: 0.4rem; transition: color 0.3s ease; }
+        .journey-step p { font-size: 0.8rem; color: var(--text-secondary); transition: color 0.3s ease; }
+        .journey-step.active h4 { color: #2563eb; }
 
         /* 5. Why Join Alkara */
         .why-grid {
@@ -344,11 +437,13 @@
         }
         .why-card {
             background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; padding: 2.2rem;
-            transition: all 0.3s ease; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
         .why-card:hover { transform: translateY(-5px); border-color: #3b82f6; box-shadow: 0 12px 35px rgba(59,130,246,0.08); background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); }
-        .why-icon { font-size: 2.2rem; margin-bottom: 1rem; display: inline-block; }
-        .why-card h4 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .why-icon { font-size: 2.2rem; margin-bottom: 1rem; display: inline-block; transition: transform 0.3s ease; }
+        .why-card:hover .why-icon { transform: scale(1.1); }
+        .why-card h4 { font-size: 1.2rem; margin-bottom: 0.5rem; transition: color 0.2s ease; }
+        .why-card:hover h4 { color: #1d4ed8; }
         .why-card p { font-size: 0.9rem; color: var(--text-secondary); }
 
         /* 7. Interactive Numbers */
@@ -357,7 +452,7 @@
         }
         .number-card {
             background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; padding: 2.5rem 1.5rem; text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02); transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02); transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .number-card:hover { transform: translateY(-5px); border-color: #3b82f6; box-shadow: 0 10px 30px rgba(59,130,246,0.08); }
         .counter-val { font-size: 3rem; font-family: var(--font-heading); font-weight: 700; color: #0f172a; margin-bottom: 0.3rem; background: linear-gradient(135deg, #0f172a 20%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -369,44 +464,61 @@
         }
         .timeline-item {
             position: relative; margin-bottom: 2.5rem; background: #ffffff; border: 1px solid var(--border-color); border-radius: 16px; padding: 1.8rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02); transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02); transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .timeline-item:hover { border-color: #3b82f6; transform: translateX(5px); box-shadow: 0 8px 25px rgba(59,130,246,0.08); }
         .timeline-dot {
             position: absolute; left: -2.6rem; top: 1.8rem; width: 16px; height: 16px; background: #3b82f6; border-radius: 50%; border: 3px solid #f8fafc;
             box-shadow: 0 0 10px rgba(59,130,246,0.5);
+            transition: transform 0.3s ease;
         }
-        .timeline-item h4 { font-size: 1.15rem; margin-bottom: 0.4rem; color: #0f172a; }
+        .timeline-item:hover .timeline-dot { transform: scale(1.2); }
+        .timeline-item h4 { font-size: 1.15rem; margin-bottom: 0.4rem; color: #0f172a; transition: color 0.2s ease; }
+        .timeline-item:hover h4 { color: #1d4ed8; }
         .timeline-item p { font-size: 0.9rem; color: var(--text-secondary); }
 
         /* Modal Overlays */
-        .modal-overlay { display: none; position: fixed; inset: 0; background-color: rgba(15, 23, 42, 0.4); backdrop-filter: blur(8px); z-index: 2000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; padding: 5%; }
+        .modal-overlay { display: none; position: fixed; inset: 0; background-color: rgba(15, 23, 42, 0.4); backdrop-filter: blur(8px); z-index: 2000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1); padding: 5%; }
         .modal-overlay.active { display: flex; opacity: 1; }
-        .modal-content { background: #ffffff; border: 1px solid var(--border-color); border-radius: 24px; padding: 2.5rem; width: 100%; max-width: 520px; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.1); transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); max-height: 90vh; overflow-y: auto;}
+        .modal-content { background: #ffffff; border: 1px solid var(--border-color); border-radius: 24px; padding: 2.5rem; width: 100%; max-width: 700px; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.1); transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); max-height: 90vh; overflow-y: auto;}
         .modal-overlay.active .modal-content { transform: scale(1); }
-        .close-btn { position: absolute; top: 1.4rem; right: 1.4rem; font-size: 1.3rem; color: var(--text-secondary); cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #f1f5f9; transition: all 0.2s ease; }
-        .close-btn:hover { color: #0f172a; background: #e2e8f0; }
+        .close-btn { position: absolute; top: 1.4rem; right: 1.4rem; font-size: 1.3rem; color: var(--text-secondary); cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #f1f5f9; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); z-index: 10;}
+        .close-btn:hover { color: #0f172a; background: #e2e8f0; transform: rotate(90deg); }
 
-        .input-group { margin-bottom: 1.2rem; }
-        .input-group input, .input-group textarea { 
-            width: 100%; background: #f8fafc; border: 1px solid var(--border-color); 
-            border-radius: 12px; padding: 0.95rem 1.2rem; color: var(--text-primary); 
-            font-family: var(--font-body); font-size: 0.9rem; outline: none; transition: all 0.3s ease; 
+        /* Advanced Form Styling */
+        .form-container { background: #f8fafc; padding: 1.8rem; border-radius: 16px; border: 1px solid var(--border-color); margin-top: 2rem; }
+        .form-title { font-size: 0.9rem; font-weight: 700; color: #0f172a; margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 8px;}
+        .form-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+        .input-group { flex: 1; min-width: 250px; position: relative; }
+        .input-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.4rem; }
+        .input-group input { 
+            width: 100%; background: #ffffff; border: 1px solid var(--border-color); 
+            border-radius: 10px; padding: 0.95rem 1.2rem; color: var(--text-primary); 
+            font-family: var(--font-body); font-size: 0.9rem; outline: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
         }
-        .input-group input:focus, .input-group textarea:focus { border-color: #3b82f6; background: #ffffff; box-shadow: 0 0 15px rgba(59, 130, 246, 0.1); }
+        .input-group input:focus { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.1); background: #ffffff; }
+        .input-group input:not(:placeholder-shown):invalid { border-color: var(--error-color); background: #fef2f2; }
+        .input-group input:not(:placeholder-shown):valid { border-color: var(--success-color); }
+        
+        /* Custom File Input */
+        .file-upload-wrapper { position: relative; display: flex; align-items: center; }
+        .file-upload-input { width: 100%; opacity: 0; position: absolute; z-index: 2; cursor: pointer; height: 100%; }
+        .file-upload-ui { width: 100%; background: #ffffff; border: 1px dashed #94a3b8; border-radius: 10px; padding: 0.95rem 1.2rem; color: #94a3b8; font-size: 0.9rem; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; align-items: center; gap: 10px; }
+        .input-group:focus-within .file-upload-ui { border-color: #3b82f6; background: #f0fdf4; color: #0f172a; border-style: solid; box-shadow: 0 0 10px rgba(59, 130, 246, 0.08); }
         
         .submit-btn { 
-            width: 100%; background-color: #0f172a; color: #ffffff; border: none; border-radius: 12px; 
-            padding: 1rem; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; 
+            width: 100%; background-color: #0f172a; color: #ffffff; border: none; border-radius: 10px; 
+            padding: 1.1rem; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
             letter-spacing: 0.08em; font-size: 0.85rem; font-family: var(--font-heading); margin-top: 0.5rem;
         }
         .submit-btn:hover { background-color: #3b82f6; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25); }
 
         /* Toast Notifications */
-        #toastContainer { position: fixed; bottom: 2rem; right: 2rem; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+        #toastContainer { position: fixed; bottom: 2rem; right: 2rem; z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
         .toast {
             background: #0f172a; color: #ffffff; padding: 1rem 1.5rem; border-radius: 12px; font-size: 0.85rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             display: flex; align-items: center; gap: 12px; animation: slideInToast 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; border-left: 4px solid #3b82f6;
+            pointer-events: auto;
         }
         @keyframes slideInToast {
             from { transform: translateY(100px); opacity: 0; }
@@ -418,13 +530,15 @@
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-radius: 28px; padding: 4rem 2rem; text-align: center; color: #ffffff; margin-bottom: 4rem; position: relative; overflow: hidden;
             box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
+        .footer-cta-box:hover { transform: translateY(-3px); }
         .footer-cta-box h2 { color: #ffffff; font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 1rem; }
         .footer-cta-box p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 2rem; }
         .cta-btn-glow {
             background: #3b82f6; color: #ffffff; border: none; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700;
             text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--font-heading); cursor: pointer;
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.5); transition: all 0.3s ease; display: inline-block;
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.5); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: inline-block;
         }
         .cta-btn-glow:hover { background: #2563eb; transform: translateY(-3px); box-shadow: 0 0 35px rgba(59, 130, 246, 0.8); }
 
@@ -441,7 +555,7 @@
 
         @media (max-width: 900px) {
             .hamburger { display: flex; }
-            .nav-links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; background: #ffffff; flex-direction: column; justify-content: center; gap: 2rem; transition: right 0.3s ease; border-left: 1px solid var(--border-color); box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
+            .nav-links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; background: #ffffff; flex-direction: column; justify-content: center; gap: 2rem; transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1); border-left: 1px solid var(--border-color); box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
             .nav-links.active { right: 0; }
             .careers-section { padding: 2.5rem 1.5rem; }
             .journey-container { flex-direction: column; }
@@ -450,10 +564,8 @@
 </head>
 <body>
 
-    <!-- Toast Notification Container -->
     <div id="toastContainer"></div>
 
-    <!-- Navigation Bar -->
     <nav id="navbar">
         <a href="#" class="brand">
             <img src="assets/image/logo-alkari-hitam.png" alt="Alkari Logo" class="brand-logo" onerror="this.style.display='none'; document.getElementById('brandFallback').style.display='block';">
@@ -469,6 +581,7 @@
     <!-- 1. Hero Section -->
     <section class="hero" id="heroSection">
         <div class="hero-bg-canvas">
+            <div class="hero-doodles"></div>
             <div class="gradient-mesh"></div>
             <div class="floating-blob blob-1"></div>
             <div class="floating-blob blob-2"></div>
@@ -492,89 +605,889 @@
                 Ready to become an Alkarian? Find your next Ad(ventures) here. 🚀
             </p>
 
-            <!-- Search Bar with Typing Placeholder & Shortcuts -->
-            <div class="career-search-box">
-                <svg class="career-search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="jobSearchInput" class="career-search-input" placeholder="Discover your Alkarian journey......">
+            <div class="career-search-box" id="jobSearchContainer">
+                <svg class="career-search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="jobSearchInput" class="career-search-input" aria-label="Search jobs" placeholder="Discover your Alkarian journey......">
                 <span class="search-shortcut-hint">⌘K</span>
             </div>
 
-            <!-- Trending roles / suggestions chips -->
             <div class="search-suggestions-container">
                 <div class="trending-chips">
                     <span>Trending:</span>
-                    <div class="trend-chip" onclick="applySearchPreset('Legal')">Legal Analyst</div>
-                    <div class="trend-chip" onclick="applySearchPreset('Risk')">Risk Analyst</div>
-                    <div class="trend-chip" onclick="applySearchPreset('Marketing')">Marketing</div>
-                    <div class="trend-chip" onclick="applySearchPreset('Remote')">Remote-friendly</div>
+                    <div class="trend-chip" onclick="applySearchPreset('Legal')">Legal Advisory</div>
+                    <div class="trend-chip" onclick="applySearchPreset('Consulting')">Consulting</div>
+                    <div class="trend-chip" onclick="applySearchPreset('Hybrid')">Hybrid Roles</div>
+                    <div class="trend-chip" onclick="applySearchPreset('Internship')">Internships</div>
                 </div>
             </div>
 
-            <!-- Job Openings Grid -->
             <div class="jobs-grid" id="jobsGrid">
-                <div class="job-card" data-title="Legal Analyst" data-desc="Help research corporate regulations & strategic legal docs with a super flexible, modern hybrid work setup.">
+                
+                <!-- 1. Featured Job -->
+                <div class="job-card" data-title="Employment Counsel">
                     <div>
                         <div class="job-card-top">
                             <span class="job-tag">Alkara Legal Advisory</span>
-                            <div class="job-status-badges">
-                                <span class="badge-pill badge-hot">HOT</span>
-                                <span class="badge-pill badge-remote">REMOTE</span>
-                            </div>
+                            <div class="job-status-badges"><span class="badge-pill badge-hybrid">HYBRID</span></div>
                         </div>
                         <h4>Employment Counsel</h4>
-                        <p>Full-time • South Jakarta / Hybrid</p>
+                        <p class="short-desc">Advise on employment law, labor compliance, workplace policies, and employment-related legal matters within a collaborative environment.</p>
                     </div>
                     <div>
                         <div class="job-tiny-stats">
-                            <span>👥 24 applicants</span>
-                            <span>👀 142 views</span>
-                            <span>⚡ Posted today</span>
+                            <span>👥 887 applicants</span> <span>👀 1819 views</span>
                         </div>
                         <span class="job-details-link">View Details & Apply &rarr;</span>
                     </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>As an Employment Counsel at Alkara Legal Advisory, you will play a pivotal role in shaping robust workplace policies and ensuring full regulatory compliance across our entire portfolio of companies. You will serve as the primary legal partner for HR leadership, safeguarding our corporate integrity while fostering a fair, innovative work environment.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Provide strategic, commercially viable legal advice on all employment-related matters including hiring, performance management, and terminations.</li>
+                                <li>Draft, review, and negotiate complex employment agreements, contractor agreements, and separation agreements.</li>
+                                <li>Monitor and ensure continuous compliance with Indonesian labor laws (UU Ketenagakerjaan) and Omnibus Law regulations.</li>
+                                <li>Design and conduct legal training programs for HR teams and business managers across all business units.</li>
+                                <li>Manage and resolve pre-litigation employment disputes, minimizing organizational risk and liability.</li>
+                                <li>Collaborate seamlessly with the Talent Acquisition team on global mobility and expatriate employment matters.</li>
+                                <li>Audit internal workplace policies, handbooks, and standard operating procedures annually.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Bachelor of Laws (S.H.) or equivalent from a top-tier university.</li>
+                                <li>Minimum 3 years of dedicated employment law experience in a leading law firm or multinational corporation.</li>
+                                <li>Active PERADI license is mandatory.</li>
+                                <li>Deep, practical understanding of Indonesian labor laws and dispute resolution frameworks (PHI).</li>
+                                <li>Exceptional problem-solving abilities, capable of translating complex legal jargon into actionable business advice.</li>
+                                <li>High emotional intelligence and excellent stakeholder management skills.</li>
+                                <li>Impeccable written and verbal communication skills in both Bahasa Indonesia and English.</li>
+                                <li>Proven ability to manage sensitive, confidential matters with absolute discretion.</li>
+                                <li>Strong collaborative mindset to work within a highly dynamic holding company structure.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Legal Advisory</li>
+                                <li><strong>Job Type:</strong> Full-time</li>
+                                <li><strong>Work Arrangement:</strong> Hybrid</li>
+                                <li><strong>Location:</strong> Central Jakarta, Indonesia</li>
+                                <li><strong>Department:</strong> Employment Law & Industrial Relations</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="job-card" data-title="Growth Strategist" data-desc="Design scaling strategies for our holding business platforms using data-driven insights and a creative mindset.">
+                <!-- 2. Featured Job -->
+                <div class="job-card" data-title="Risk Analyst">
                     <div>
                         <div class="job-card-top">
                             <span class="job-tag">Alkara Consulting</span>
-                            <div class="job-status-badges">
-                                <span class="badge-pill badge-new">NEW</span>
-                            </div>
+                            <div class="job-status-badges"><span class="badge-pill badge-onsite">ON-SITE</span></div>
                         </div>
                         <h4>Risk Analyst</h4>
-                        <p>Full-time • Central Jakarta</p>
+                        <p class="short-desc">Identify, evaluate, and mitigate business risks while supporting governance and strategic decision-making across the organization.</p>
                     </div>
                     <div>
                         <div class="job-tiny-stats">
-                            <span>👥 12 applicants</span>
-                            <span>👀 98 views</span>
-                            <span>⚡ Fast response</span>
+                            <span>👥 451 applicants</span> <span>👀 988 views</span>
                         </div>
                         <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>The Risk Analyst position at Alkara Consulting is designed for analytical thinkers who thrive in complex business environments. You will be instrumental in identifying vulnerabilities, performing quantitative risk modeling, and delivering actionable mitigation strategies for our enterprise clients.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Execute comprehensive risk assessments for cross-industry consulting projects.</li>
+                                <li>Develop, implement, and maintain advanced risk scoring models and quantitative analytics dashboards.</li>
+                                <li>Analyze financial, operational, and regulatory data to identify emerging enterprise threats.</li>
+                                <li>Draft detailed risk mitigation plans and present them to senior stakeholders and C-level executives.</li>
+                                <li>Collaborate with internal audit teams to ensure strict compliance with internal control frameworks (e.g., COSO).</li>
+                                <li>Monitor macroeconomic trends and geopolitical shifts that could impact our clients' operational stability.</li>
+                                <li>Facilitate risk awareness workshops for client leadership teams.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Bachelor’s degree in Finance, Economics, Statistics, or Risk Management.</li>
+                                <li>2-3 years of professional experience in risk management, compliance, or management consulting.</li>
+                                <li>Strong proficiency in financial modeling and statistical analysis tools (Excel, Python, or R).</li>
+                                <li>Ability to synthesize vast amounts of complex data into clear, concise executive summaries.</li>
+                                <li>Professional certifications such as FRM (Financial Risk Manager) or PRM are highly preferred.</li>
+                                <li>Meticulous attention to detail and a highly organized approach to project management.</li>
+                                <li>Demonstrated ability to remain calm and objective in high-pressure scenarios.</li>
+                                <li>Excellent English proficiency, both written and spoken, for drafting client reports.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Consulting</li>
+                                <li><strong>Job Type:</strong> Full-time</li>
+                                <li><strong>Work Arrangement:</strong> On-site</li>
+                                <li><strong>Location:</strong> Central Jakarta, Indonesia</li>
+                                <li><strong>Department:</strong> Risk Management</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <div class="job-card" data-title="Venture Associate" data-desc="Analyze startup pitch decks, research tech trends, and collaborate directly with innovative founders.">
+                <!-- 3. Featured Job -->
+                <div class="job-card" data-title="Marketing Associate">
                     <div>
                         <div class="job-card-top">
                             <span class="job-tag">Alkara Ventures</span>
-                            <div class="job-status-badges">
-                                <span class="badge-pill badge-hot">POPULAR</span>
-                            </div>
+                            <div class="job-status-badges"><span class="badge-pill badge-onsite">ON-SITE</span></div>
                         </div>
                         <h4>Marketing Associate</h4>
-                        <p>Full-time • Jakarta / Remote-friendly</p>
+                        <p class="short-desc">Analyze startup pitch decks, research tech trends, and collaborate directly with innovative founders to build market presence.</p>
                     </div>
                     <div>
                         <div class="job-tiny-stats">
-                            <span>👥 45 applicants</span>
-                            <span>👀 310 views</span>
-                            <span>⚡ Posted today</span>
+                            <span>👥 761 applicants</span> <span>👀 1761 views</span>
                         </div>
                         <span class="job-details-link">View Details & Apply &rarr;</span>
                     </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>As a Marketing Associate at Alkara Ventures, you will be the driving force behind the brand growth of our early-stage portfolio companies. You will combine analytical market research with creative marketing strategies to help tech startups achieve product-market fit and scale rapidly.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Design and execute Go-To-Market (GTM) strategies for newly funded portfolio startups.</li>
+                                <li>Conduct deep-dive market research and competitive analysis to identify unique positioning opportunities.</li>
+                                <li>Manage digital marketing campaigns across SEO, SEM, and social media platforms for brand awareness.</li>
+                                <li>Assist startup founders in refining their pitch decks and external communication materials.</li>
+                                <li>Analyze campaign performance metrics to optimize conversion rates and ROI.</li>
+                                <li>Organize and execute venture capital networking events, demo days, and industry panels.</li>
+                                <li>Build strong relationships with media outlets and tech journalists to secure PR coverage.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Bachelor's degree in Marketing, Management, Business Administration, or Communications.</li>
+                                <li>3 years of marketing experience, ideally within a tech startup, digital agency, or VC environment.</li>
+                                <li>Proven track record of managing successful digital marketing and user acquisition campaigns.</li>
+                                <li>Strong analytical skills with proficiency in Google Analytics, Mixpanel, or similar tools.</li>
+                                <li>Creative problem-solving ability with a keen eye for modern visual design and copywriting.</li>
+                                <li>Exceptional interpersonal skills to effectively coach and guide startup founders.</li>
+                                <li>Deep enthusiasm for the Southeast Asian tech and venture capital ecosystem.</li>
+                                <li>Fluent in English, capable of producing high-quality business content.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Ventures</li>
+                                <li><strong>Job Type:</strong> Full-time</li>
+                                <li><strong>Work Arrangement:</strong> On-site</li>
+                                <li><strong>Location:</strong> Central Jakarta, Indonesia</li>
+                                <li><strong>Department:</strong> Marketing & Strategy</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- 4. Required Job: Marketing Intern -->
+                <div class="job-card" data-title="Marketing Intern">
+                    <div>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Consulting</span>
+                            <div class="job-status-badges"><span class="badge-pill badge-onsite">ON-SITE</span></div>
+                        </div>
+                        <h4>Marketing Intern</h4>
+                        <p class="short-desc">Assist in developing integrated marketing strategies, conducting market research, and supporting client-facing campaigns.</p>
+                    </div>
+                    <div>
+                        <div class="job-tiny-stats">
+                            <span>👥 1204 applicants</span> <span>👀 3420 views</span>
+                        </div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>This is a fast-paced, high-impact internship where you won't just be fetching coffee. As a Marketing Intern at Alkara Consulting, you will actively contribute to real B2B consulting projects, gaining hands-on experience in strategic marketing, corporate branding, and client engagement.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Assist in drafting market research reports, consumer behavior analyses, and competitor profiles.</li>
+                                <li>Support the creation of B2B marketing collateral, including case studies, whitepapers, and presentation decks.</li>
+                                <li>Monitor and report on social media metrics and industry trends relevant to our consulting clients.</li>
+                                <li>Help coordinate logistics for webinars, corporate workshops, and executive networking events.</li>
+                                <li>Collaborate with graphic designers to ensure all client deliverables meet brand guidelines.</li>
+                                <li>Conduct database management and support email marketing campaigns via HubSpot or Mailchimp.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Currently pursuing or recently graduated with a degree in Marketing, Management, Communication, PR, or related field.</li>
+                                <li>Strong passion for B2B marketing and management consulting.</li>
+                                <li>Excellent written and verbal communication skills in English and Bahasa Indonesia.</li>
+                                <li>Basic proficiency in design tools (Canva, Figma, or Adobe Creative Suite) is a major plus.</li>
+                                <li>Highly organized, detail-oriented, and capable of managing multiple deadlines.</li>
+                                <li>A proactive, "can-do" attitude with a willingness to learn rapidly.</li>
+                                <li>Strong teamwork skills to collaborate with cross-functional consulting teams.</li>
+                                <li>Familiarity with modern social media platforms (LinkedIn, Twitter) in a professional context.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Consulting</li>
+                                <li><strong>Job Type:</strong> Internship (6 Months)</li>
+                                <li><strong>Work Arrangement:</strong> On-site</li>
+                                <li><strong>Location:</strong> Central Jakarta, Indonesia</li>
+                                <li><strong>Department:</strong> Marketing & Strategy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Required Job: Litigation Counsel -->
+                <div class="job-card" data-title="Litigation Counsel">
+                    <div>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Legal Advisory</span>
+                            <div class="job-status-badges"><span class="badge-pill badge-onsite">ON-SITE</span></div>
+                        </div>
+                        <h4>Litigation Counsel</h4>
+                        <p class="short-desc">Represent the holding company in commercial disputes, manage external counsel, and provide strategic risk mitigation advice.</p>
+                    </div>
+                    <div>
+                        <div class="job-tiny-stats">
+                            <span>👥 215 applicants</span> <span>👀 640 views</span>
+                        </div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>Alkara Legal Advisory is seeking a formidable Litigation Counsel to defend and advance the commercial interests of our holding company and its subsidiaries. You will manage high-stakes commercial disputes, arbitrations, and complex litigation, ensuring our corporate assets and reputation are fiercely protected.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Develop and execute litigation strategies for civil, commercial, employment, and administrative disputes.</li>
+                                <li>Represent clients in court proceedings across District Courts, Commercial Courts, State Administrative Courts, and arbitration forums where applicable.</li>
+                                <li>Draft, review, and submit legal pleadings, statements of claim, defenses, replies, rejoinders, appeals, cassation, and judicial review submissions.</li>
+                                <li>Prepare legal opinions, litigation memorandums, and case strategies based on comprehensive legal and factual analysis.</li>
+                                <li>Conduct rigorous legal research and risk analysis prior to initiating or settling litigation.</li>
+                                <li>Handle regulatory investigations, government inquiries, and enforcement proceedings involving corporate and commercial matters.</li>
+                                <li>Respond effectively to regulatory inquiries and government investigations.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Bachelor of Laws (S.H.), preferably supplemented by a Master of Laws (LL.M.).</li>
+                                <li>Minimum 3-4 years of intensive commercial litigation experience at a top-tier law firm.</li>
+                                <li>Active PERADI advocate license is strictly mandatory.</li>
+                                <li>Extensive courtroom experience and a proven track record of favorable settlements/verdicts.</li>
+                                <li>Deep expertise in Indonesian civil procedure, corporate law, and commercial arbitration.</li>
+                                <li>Exceptional negotiation, advocacy, and strategic problem-solving abilities.</li>
+                                <li>Ability to remain highly resilient and focused under intense pressure and tight deadlines.</li>
+                                <li>Impeccable English proficiency (written and spoken) for cross-border disputes.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Legal Advisory</li>
+                                <li><strong>Job Type:</strong> Full-time</li>
+                                <li><strong>Work Arrangement:</strong> On-site</li>
+                                <li><strong>Location:</strong> Central Jakarta, Indonesia</li>
+                                <li><strong>Department:</strong> Litigation & Advocacy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Required Job: Finance Associate -->
+                <div class="job-card" data-title="Finance Associate">
+                    <div>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Consulting</span>
+                            <div class="job-status-badges"><span class="badge-pill badge-onsite">ON-SITE</span></div>
+                        </div>
+                        <h4>Transaction Advisory Associate</h4>
+                        <p class="short-desc">Drive financial modeling, forecasting, and quantitative analysis to support high-stakes strategic consulting engagements.</p>
+                    </div>
+                    <div>
+                        <div class="job-tiny-stats">
+                            <span>👥 932 applicants</span> <span>👀 2100 views</span>
+                        </div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>The Transaction Advisory Associate plays a key analytical role at Alkara Consulting. Working fully onsite, you will support clients throughout the transaction lifecycle by developing financial models, performing business valuations, conducting financial due diligence, and delivering data-driven insights that enable informed investment, acquisition, divestment, and restructuring decisions.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Build, audit, and maintain complex financial models (DCF, LBO, 3-statement models) for client engagements.</li>
+                                <li>Perform rigorous valuation analyses for target acquisitions and joint ventures.</li>
+                                <li>Analyze client financial statements to identify cost-saving opportunities and revenue optimization levers.</li>
+                                <li>Prepare comprehensive financial due diligence reports and investment memorandums.</li>
+                                <li>Assist project managers in budgeting, forecasting, and tracking financial KPIs for client transformations.</li>
+                                <li>Conduct macroeconomic and industry-specific financial benchmarking.</li>
+                                <li>Present quantitative findings clearly to non-financial stakeholders through compelling data visualization.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Bachelor's degree in Finance, Accounting, Economics, or related quantitative field.</li>
+                                <li>2-4 years of experience in investment banking, corporate finance, or financial consulting.</li>
+                                <li>Advanced, master-level proficiency in Microsoft Excel (index/match, dynamic arrays, VBA is a plus).</li>
+                                <li>Solid understanding of corporate valuation methodologies and accounting principles (PSAK/IFRS).</li>
+                                <li>CFA Level 1 or 2 candidate, or CPA designation is highly preferred.</li>
+                                <li>Exceptional analytical thinking and logical problem-solving capabilities.</li>
+                                <li>Self-motivated and highly disciplined, capable of thriving in a fully remote work environment.</li>
+                                <li>Excellent written English skills for drafting high-quality financial reports.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Consulting</li>
+                                <li><strong>Job Type:</strong> Full-time</li>
+                                <li><strong>Work Arrangement:</strong> On-site</li>
+                                <li><strong>Location:</strong> Central Jakarta</li>
+                                <li><strong>Department:</strong> Transaction Advisory Services</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Required Job: Talent Acquisition Intern -->
+                <div class="job-card" data-title="Talent Acquisition Intern">
+                    <div>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Workforce</span>
+                            <div class="job-status-badges"><span class="badge-pill badge-hybrid">HYBRID</span></div>
+                        </div>
+                        <h4>Talent Acquisition Intern</h4>
+                        <p class="short-desc">Source top-tier talent, coordinate candidate interviews, and assist in building a robust pipeline for our growing portfolio.</p>
+                    </div>
+                    <div>
+                        <div class="job-tiny-stats">
+                            <span>👥 1540 applicants</span> <span>👀 4200 views</span>
+                        </div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>Join the engine that powers Alkara's growth. As a Talent Acquisition Intern, you will learn the end-to-end recruitment lifecycle by helping us identify, engage, and hire elite professionals across our diverse business units. You will be an ambassador for our brand and culture.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Source high-potential candidates utilizing LinkedIn Recruiter, job portals, and university networks.</li>
+                                <li>Review resumes and conduct initial phone screens to assess fundamental cultural and technical fit.</li>
+                                <li>Coordinate complex interview schedules between candidates and hiring managers seamlessly.</li>
+                                <li>Maintain and update candidate records meticulously within our Applicant Tracking System (ATS).</li>
+                                <li>Assist in organizing employer branding events, career fairs, and campus recruitment drives.</li>
+                                <li>Provide a world-class, empathetic candidate experience throughout the interview process.</li>
+                                <li>Generate weekly recruitment metric reports for the HR leadership team.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Final year student or fresh graduate in Psychology, Human Resources, or Business Administration.</li>
+                                <li>Genuine passion for people, recruitment, and building high-performing organizational cultures.</li>
+                                <li>High emotional intelligence and the ability to evaluate soft skills effectively.</li>
+                                <li>Exceptional organizational skills and acute attention to detail when managing schedules.</li>
+                                <li>Strong interpersonal and communication skills; you must be comfortable talking to senior professionals.</li>
+                                <li>Familiarity with LinkedIn and basic modern HR tools is an advantage.</li>
+                                <li>Discreet and professional demeanor when handling confidential applicant data.</li>
+                                <li>Fluency in English and Bahasa Indonesia.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Workforce</li>
+                                <li><strong>Job Type:</strong> Internship (6 Months)</li>
+                                <li><strong>Work Arrangement:</strong> Hybrid</li>
+                                <li><strong>Location:</strong> Central Jakarta, Indonesia</li>
+                                <li><strong>Department:</strong> Human Resources</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. NEW "Find Your Dream Job" CTA -->
+                <div class="job-card dream-job-cta" onclick="focusSearch()">
+                    <span class="dream-job-text">Find Your Dream Job <span class="arrow">&rarr;</span></span>
+                </div>
+
+                <!-- Hidden Jobs (9 to 16, dynamically filtered) -->
+                <div class="job-card" data-title="Renewable Energy Engineer" data-default-hidden="true" style="display: none;">
+                    <div>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Resources</span>
+                            <div class="job-status-badges"><span class="badge-pill badge-onsite">ON-SITE</span></div>
+                        </div>
+                        <h4>Renewable Energy Engineer</h4>
+                        <p class="short-desc">Design and implement sustainable energy solutions, focusing on solar and wind infrastructure for commercial partners.</p>
+                    </div>
+                    <div>
+                        <div class="job-tiny-stats"><span>👥 310 applicants</span> <span>👀 890 views</span></div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>Drive the green transition in Southeast Asia. As a Renewable Energy Engineer, you will design, optimize, and oversee the implementation of large-scale solar and wind infrastructure projects for Alkara Energy's industrial partners.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Conduct technical feasibility studies for commercial solar PV and wind energy installations.</li>
+                                <li>Design electrical schematics and system layouts using AutoCAD and specialized PV software.</li>
+                                <li>Oversee on-site project execution, ensuring engineering standards and safety protocols are met.</li>
+                                <li>Collaborate with procurement teams to source high-efficiency, cost-effective renewable components.</li>
+                                <li>Perform performance testing and grid integration analysis for newly installed systems.</li>
+                                <li>Troubleshoot technical issues during the commissioning phase of energy projects.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Bachelor's degree in Electrical, Mechanical, or Renewable Energy Engineering.</li>
+                                <li>3-5 years of proven experience in designing and executing commercial solar/wind projects.</li>
+                                <li>Proficiency in AutoCAD, PVsyst, SketchUp, or similar engineering software.</li>
+                                <li>Deep knowledge of Indonesian grid regulations (PLN standards) and interconnection policies.</li>
+                                <li>Strong analytical problem-solving skills for complex on-site engineering challenges.</li>
+                                <li>Willingness to travel frequently to project sites across Indonesia.</li>
+                                <li>Excellent teamwork and vendor management capabilities.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Resources</li>
+                                <li><strong>Job Type:</strong> Full-time</li>
+                                <li><strong>Work Arrangement:</strong> On-site / Field</li>
+                                <li><strong>Location:</strong> Central Jakarta</li>
+                                <li><strong>Department:</strong> Energy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="job-card" data-title="HR Operations Specialist" data-default-hidden="true" style="display: none;">
+                    <div>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Workforce</span>
+                            <div class="job-status-badges"><span class="badge-pill badge-onsite">ON-SITE</span></div>
+                        </div>
+                        <h4>HR Operations Specialist</h4>
+                        <p class="short-desc">Streamline human resources processes, manage employee data, and ensure compliance across multiple business units.</p>
+                    </div>
+                    <div>
+                        <div class="job-tiny-stats"><span>👥 450 applicants</span> <span>👀 1100 views</span></div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>We are seeking a highly organized HR Operations Specialist to form the backbone of our workforce management. You will ensure seamless employee experiences from onboarding to offboarding while maintaining impeccable HR data integrity across the holding company.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Manage the complete employee onboarding and offboarding processes across all subsidiaries.</li>
+                                <li>Administer comprehensive payroll processing, benefits, and BPJS compliance accurately.</li>
+                                <li>Maintain and continuously update the Human Resources Information System (HRIS).</li>
+                                <li>Serve as the primary point of contact for all employee inquiries regarding HR policies.</li>
+                                <li>Generate accurate monthly HR reports detailing headcount, attrition, and operational metrics.</li>
+                                <li>Assist in the implementation of new HR automation tools to improve departmental efficiency.</li>
+                                <li>Ensure all employee contracts and personnel files are legally compliant and securely stored.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Bachelor's degree in Human Resources, Business Administration, or related fields.</li>
+                                <li>3 years of experience in HR Operations, Payroll, or HR Administration.</li>
+                                <li>Comprehensive knowledge of Indonesian labor regulations (UU Ketenagakerjaan) and BPJS systems.</li>
+                                <li>Strong proficiency in utilizing modern HRIS platforms (e.g., Mekari Talenta, Workday, BambooHR).</li>
+                                <li>Exceptional attention to detail—accuracy in payroll and data management is non-negotiable.</li>
+                                <li>High level of integrity and confidentiality when handling sensitive employee information.</li>
+                                <li>Strong customer service mindset geared towards employee satisfaction.</li>
+                                <li>Proficient in Microsoft Excel (VLOOKUP, Pivot Tables).</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Workforce</li>
+                                <li><strong>Job Type:</strong> Full-time</li>
+                                <li><strong>Work Arrangement:</strong> On-site</li>
+                                <li><strong>Location:</strong> Central Jakarta</li>
+                                <li><strong>Department:</strong> Human Resources</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="job-card" data-title="Investment Analyst" data-default-hidden="true" style="display: none;">
+                    <div>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Ventures</span>
+                            <div class="job-status-badges"><span class="badge-pill badge-hybrid">HYBRID</span></div>
+                        </div>
+                        <h4>Investment Analyst</h4>
+                        <p class="short-desc">Perform due diligence, build financial models, and evaluate early-stage technology startups for potential venture funding.</p>
+                    </div>
+                    <div>
+                        <div class="job-tiny-stats"><span>👥 1890 applicants</span> <span>👀 5390 views</span></div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>As an Investment Analyst at Alkara Ventures, you will be on the frontlines of innovation. You will identify high-growth tech startups in Southeast Asia, conduct rigorous due diligence, and present investment recommendations to the venture partnership board.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Source prospective early-stage startup investments through market research and networking.</li>
+                                <li>Perform deep-dive commercial, financial, and technical due diligence on target companies.</li>
+                                <li>Build valuation models and cap table analyses for prospective venture deals.</li>
+                                <li>Draft comprehensive investment memos detailing risks, market size, and return potential.</li>
+                                <li>Monitor the financial performance and operational KPIs of existing portfolio companies.</li>
+                                <li>Conduct macro-level sector research to identify emerging technology trends (e.g., AI, ClimateTech).</li>
+                                <li>Assist partners in deal structuring and term sheet negotiations.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Bachelor's degree in Finance, Economics, Engineering, or Computer Science from a top university.</li>
+                                <li>1-3 years of experience in Venture Capital, Investment Banking, or Strategy Consulting.</li>
+                                <li>Exceptional financial modeling skills and a strong grasp of startup valuation metrics.</li>
+                                <li>Deep intellectual curiosity and a genuine passion for technology and entrepreneurship.</li>
+                                <li>Strong networking abilities to build relationships with founders and other VC associates.</li>
+                                <li>Ability to synthesize complex technical and financial data into clear, persuasive arguments.</li>
+                                <li>Highly autonomous and capable of thriving in an unstructured, remote-first environment.</li>
+                                <li>Excellent written and spoken English is mandatory.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Ventures</li>
+                                <li><strong>Job Type:</strong> Full-time</li>
+                                <li><strong>Work Arrangement:</strong> Hybrid</li>
+                                <li><strong>Location:</strong> Central Jakarta</li>
+                                <li><strong>Department:</strong> Investments</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="job-card" data-title="Corporate Paralegal" data-default-hidden="true" style="display: none;">
+                    <div>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Legal Advisory</span>
+                            <div class="job-status-badges"><span class="badge-pill badge-onsite">ON-SITE</span></div>
+                        </div>
+                        <h4>Corporate Paralegal</h4>
+                        <p class="short-desc">Draft corporate resolutions, manage entity formations, and support senior legal counsel in complex M&A transactions.</p>
+                    </div>
+                    <div>
+                        <div class="job-tiny-stats"><span>👥 280 applicants</span> <span>👀 750 views</span></div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>The Corporate Paralegal provides essential legal, administrative, and procedural support to our legal advisory team. You will ensure the corporate governance and entity compliance for all Alkara subsidiaries remain flawless while supporting major transactions.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Draft standard corporate documents including resolutions, minutes of meetings, and powers of attorney.</li>
+                                <li>Assist in the formation, maintenance, and dissolution of corporate entities (PT, PMA).</li>
+                                <li>Manage and organize complex virtual data rooms (VDRs) during M&A due diligence processes.</li>
+                                <li>Liaise with notaries, government agencies (AHU, BKPM), and external vendors to file corporate records.</li>
+                                <li>Maintain a centralized database of all executed corporate contracts, licenses, and permits.</li>
+                                <li>Conduct preliminary legal research and summarize findings for senior counsels.</li>
+                                <li>Assist in preparing closing binders for corporate financing and venture capital transactions.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Bachelor of Laws (S.H.) or a recognized Paralegal certification.</li>
+                                <li>2-4 years of experience as a corporate paralegal in a law firm or in-house legal department.</li>
+                                <li>Strong familiarity with Indonesian corporate registry processes (OSS, SABH).</li>
+                                <li>Incredible organizational skills and an obsessive attention to document detail.</li>
+                                <li>Proficiency in document management software and Microsoft Office Suite.</li>
+                                <li>Ability to manage multiple concurrent tasks under strict regulatory deadlines.</li>
+                                <li>Strong collaborative skills and a professional, proactive attitude.</li>
+                                <li>Solid command of legal English for reviewing bilingual contracts.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Legal Advisory</li>
+                                <li><strong>Job Type:</strong> Full-time</li>
+                                <li><strong>Work Arrangement:</strong> On-site</li>
+                                <li><strong>Location:</strong> Central Jakarta</li>
+                                <li><strong>Department:</strong> Corporate</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="job-card" data-title="Strategic Project Manager" data-default-hidden="true" style="display: none;">
+                    <div>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Consulting</span>
+                            <div class="job-status-badges"><span class="badge-pill badge-hybrid">HYBRID</span></div>
+                        </div>
+                        <h4>Project Manager</h4>
+                        <p class="short-desc">Lead cross-functional teams to deliver enterprise-wide transformation projects for our key consulting clients.</p>
+                    </div>
+                    <div>
+                        <div class="job-tiny-stats"><span>👥 850 applicants</span> <span>👀 2400 views</span></div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>As a Project Manager, you are the conductor of our consulting engagements. You will take ownership of complex, multi-million dollar transformation projects, ensuring they are delivered on time, within budget, and exceed client expectations.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Develop comprehensive project plans, defining scope, timelines, resource allocation, and deliverables.</li>
+                                <li>Lead cross-functional consulting teams (finance, tech, operations) to execute client transformations.</li>
+                                <li>Manage executive stakeholder communications, providing regular status updates and risk assessments.</li>
+                                <li>Utilize Agile and Waterfall methodologies to ensure adaptive, efficient project delivery.</li>
+                                <li>Monitor project budgets aggressively, ensuring high profit margins and cost control.</li>
+                                <li>Facilitate change management workshops to ensure smooth adoption of new strategies by clients.</li>
+                                <li>Conduct post-project reviews to identify lessons learned and optimize internal methodologies.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Bachelor's degree in Business Administration, Management, Industrial Engineering, Economics, Finance, or a related discipline. A master's degree or professional certification (e.g., PMP, PRINCE2) is an advantage.</li>
+                                <li>3-4 years of project management experience, preferably within a Tier-1 management consulting firm.</li>
+                                <li>PMP, PRINCE2, or Agile/Scrum Master certifications are highly desirable.</li>
+                                <li>Exceptional leadership skills with the ability to influence without direct authority.</li>
+                                <li>Strong commercial acumen and experience managing large project budgets.</li>
+                                <li>Expertise in project management tools (Jira, Asana, MS Project).</li>
+                                <li>Mastery in conflict resolution and high-stakes negotiation with C-level clients.</li>
+                                <li>Excellent English communication and presentation skills.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Consulting</li>
+                                <li><strong>Job Type:</strong> Full-time</li>
+                                <li><strong>Work Arrangement:</strong> Hybrid</li>
+                                <li><strong>Location:</strong> Central Jakarta</li>
+                                <li><strong>Department:</strong> Project Management Office (PMO)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="job-card" data-title="Grid Modernization Consultant" data-default-hidden="true" style="display: none;">
+                    <div>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Resources</span>
+                            <div class="job-status-badges"><span class="badge-pill badge-hybrid">HYBRID</span></div>
+                        </div>
+                        <h4>Grid Modernization Consultant</h4>
+                        <p class="short-desc">Advise utility clients on smart grid technologies, energy storage integration, and regulatory compliance.</p>
+                    </div>
+                    <div>
+                        <div class="job-tiny-stats"><span>👥 195 applicants</span> <span>👀 520 views</span></div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>Alkara Resources is at the forefront of the energy transition. As a Grid Modernization Consultant, you will advise large utility companies and private power providers on upgrading legacy infrastructure with cutting-edge smart grid and energy storage technologies.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Consult clients on the architectural integration of Battery Energy Storage Systems (BESS) and microgrids.</li>
+                                <li>Analyze legacy utility grids to identify modernization opportunities and efficiency improvements.</li>
+                                <li>Develop strategic roadmaps for the deployment of Advanced Metering Infrastructure (AMI) and IoT sensors.</li>
+                                <li>Model the financial ROI and carbon-reduction impact of grid modernization investments.</li>
+                                <li>Advise on regulatory compliance regarding grid codes and renewable energy interconnection policies.</li>
+                                <li>Lead technical workshops for client engineering teams on smart grid operations.</li>
+                                <li>Collaborate with technology vendors to pilot new grid management software solutions.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Master's or Bachelor's degree in Electrical Engineering, Energy Systems, or a related technical field.</li>
+                                <li>5+ years of experience in the power sector, specifically dealing with grid infrastructure or utilities.</li>
+                                <li>Deep technical knowledge of smart grids, SCADA systems, and energy storage technologies.</li>
+                                <li>Understanding of the Indonesian energy regulatory landscape (ESDM, PLN policies).</li>
+                                <li>Strong consultative skills, capable of translating complex engineering concepts to business leaders.</li>
+                                <li>Analytical mindset with experience in energy modeling software.</li>
+                                <li>Willingness to travel to regional client sites as necessary.</li>
+                                <li>Fluency in English for engaging with international technology partners.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Resources</li>
+                                <li><strong>Job Type:</strong> Full-time</li>
+                                <li><strong>Work Arrangement:</strong> Hybrid</li>
+                                <li><strong>Location:</strong> Central Jakarta</li>
+                                <li><strong>Department:</strong> Advisory & Strategy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="job-card" data-title="Portfolio Manager" data-default-hidden="true" style="display: none;">
+                    <div>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Ventures</span>
+                            <div class="job-status-badges"><span class="badge-pill badge-onsite">ON-SITE</span></div>
+                        </div>
+                        <h4>Portfolio Manager</h4>
+                        <p class="short-desc">Partner with founders of our portfolio companies to drive operational excellence, scale teams, and accelerate growth.</p>
+                    </div>
+                    <div>
+                        <div class="job-tiny-stats"><span>👥 420 applicants</span> <span>👀 1300 views</span></div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>The Portfolio Manager is the dedicated growth partner for our venture-backed startups. Post-investment, you will act as a fractional COO/Advisor, rolling up your sleeves to help founders solve their toughest operational bottlenecks and scale successfully to their next funding round.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Onboard newly funded startups and align them with Alkara Ventures' strategic growth frameworks.</li>
+                                <li>Conduct monthly business reviews (MBRs) with founders to track burn rates, runaways, and key growth metrics.</li>
+                                <li>Diagnose operational bottlenecks within portfolio companies and implement scalable internal processes.</li>
+                                <li>Leverage the broader Alkara holding network to secure synergistic partnerships for startups.</li>
+                                <li>Assist founders in executive hiring, org-chart design, and building company culture.</li>
+                                <li>Prepare startups for follow-on fundraising rounds (Series A/B) by refining financial models and pitch narratives.</li>
+                                <li>Aggregate portfolio performance data for quarterly reporting to Alkara's investment committee.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Bachelor's degree in Business, Operations, or related field; MBA is highly preferred.</li>
+                                <li>2-3years of experience in startup operations, strategy consulting, or as a startup founder/operator.</li>
+                                <li>Deep, hands-on understanding of SaaS, Consumer Tech, or Fintech business models and metrics.</li>
+                                <li>Exceptional financial literacy, capable of dissecting P&L statements and unit economics.</li>
+                                <li>High emotional intelligence to act as a trusted confidant and advisor to stressed founders.</li>
+                                <li>Strong project management skills to juggle the demands of 5-8 portfolio companies simultaneously.</li>
+                                <li>A robust professional network within the Southeast Asian tech ecosystem.</li>
+                                <li>Fluent English communication skills.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Ventures</li>
+                                <li><strong>Job Type:</strong> Full-time</li>
+                                <li><strong>Work Arrangement:</strong> On-site</li>
+                                <li><strong>Location:</strong> Central Jakarta</li>
+                                <li><strong>Department:</strong> Portfolio Operations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="job-card" data-title="Organizational Psychologist" data-default-hidden="true" style="display: none;">
+                    <div>
+                        <div class="job-card-top">
+                            <span class="job-tag">Alkara Workforce</span>
+                            <div class="job-status-badges"><span class="badge-pill badge-onsite">ON-SITE</span></div>
+                        </div>
+                        <h4>Organizational Psychologist</h4>
+                        <p class="short-desc">Apply behavioral science to optimize team dynamics, enhance leadership development, and improve employee retention strategies.</p>
+                    </div>
+                    <div>
+                        <div class="job-tiny-stats"><span>👥 610 applicants</span> <span>👀 1550 views</span></div>
+                        <span class="job-details-link">View Details & Apply &rarr;</span>
+                    </div>
+                    <div class="job-details-content">
+                        <div class="job-modal-section">
+                            <h4>About the Role</h4>
+                            <p>As an Organizational Psychologist at Alkara Workforce, you will apply rigorous behavioral science to unlock human potential. You will design interventions that build resilient leaders, foster high-performing teams, and ensure our corporate culture remains a competitive advantage.</p>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Design and deploy scientifically validated psychometric assessments for executive hiring and promotions.</li>
+                                <li>Analyze organizational health data (eNPS, attrition rates) to identify cultural friction points.</li>
+                                <li>Develop and facilitate targeted leadership coaching and management training programs.</li>
+                                <li>Mediate complex team conflicts and guide departments through organizational restructuring.</li>
+                                <li>Design performance management frameworks that drive motivation rather than compliance.</li>
+                                <li>Advise senior leadership on strategies to improve employee wellbeing and prevent burnout.</li>
+                                <li>Conduct qualitative research (focus groups, interviews) to map the employee experience lifecycle.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>What We're Looking For</h4>
+                            <ul>
+                                <li>Bachelor's degree in Psychology is required. A master's degree in Industrial-Organizational Psychology or Organizational Psychology is preferred.</li>
+                                <li>4+ years of applied experience in talent management, executive coaching, or organizational development.</li>
+                                <li>Certification in recognized psychometric tools (e.g., Hogan, MBTI, DiSC, CliftonStrengths).</li>
+                                <li>Strong statistical analysis skills for interpreting complex HR and survey data.</li>
+                                <li>Exceptional empathy, active listening, and the ability to build psychological safety.</li>
+                                <li>Excellent facilitation and public speaking skills for corporate training sessions.</li>
+                                <li>Ability to translate abstract psychological concepts into practical business solutions.</li>
+                                <li>High level of professional ethics regarding employee confidentiality.</li>
+                            </ul>
+                        </div>
+                        <div class="job-modal-section">
+                            <h4>Employment Information</h4>
+                            <ul class="emp-info-list">
+                                <li><strong>Business Unit:</strong> Alkara Workforce</li>
+                                <li><strong>Job Type:</strong> Full-time</li>
+                                <li><strong>Work Arrangement:</strong> On-site</li>
+                                <li><strong>Location:</strong> Central Jakarta</li>
+                                <li><strong>Department:</strong> Organizational Development</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <!-- 9. Empty State -->
@@ -592,7 +1505,7 @@
             <h2>Career Journey</h2>
             <div class="line"></div>
         </div>
-        <div class="journey-container">
+        <div class="journey-container" id="journeyContainer">
             <div class="journey-step">
                 <div class="journey-step-num">01</div>
                 <h4>Discover</h4>
@@ -613,8 +1526,8 @@
                 <h4>Welcome</h4>
                 <p>Onboard into the holding family.</p>
             </div>
-            <div class="journey-step" style="border-color: #3b82f6; background: rgba(59,130,246,0.02);">
-                <div class="journey-step-num" style="background: #3b82f6; color: #fff;">05</div>
+            <div class="journey-step active">
+                <div class="journey-step-num">05</div>
                 <h4>Become an Alkarian 🚀</h4>
                 <p>Thrive in endless Ad(ventures).</p>
             </div>
@@ -707,7 +1620,7 @@
         <div class="footer-cta-box">
             <h2>Ready to become an Alkarian?</h2>
             <p>Find your next Ad(venture) here and shape the future of Jakarta's innovative business ecosystem.</p>
-            <button class="cta-btn-glow" onclick="document.getElementById('careers').scrollIntoView({behavior: 'smooth'})">Explore Open Roles ⚡</button>
+            <button class="cta-btn-glow" onclick="focusSearch()">Explore Open Roles ⚡</button>
         </div>
     </section>
 
@@ -719,25 +1632,55 @@
     <!-- Job Detail / Apply Modal -->
     <div id="jobModal" class="modal-overlay">
         <div class="modal-content">
-            <span id="closeJobModal" class="close-btn">&times;</span>
+            <span id="closeJobModal" class="close-btn" aria-label="Close modal">&times;</span>
             <span class="job-tag" id="modalJobTag" style="margin-top: 0.5rem; display:inline-block;">Role</span>
-            <h2 id="modalJobTitle" style="font-size: 1.6rem; margin-bottom: 0.5rem; color: #0f172a;">Job Title</h2>
-            <p id="modalJobDesc" style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.6;"></p>
+            <h2 id="modalJobTitle" style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #0f172a; font-family: var(--font-heading);">Job Title</h2>
             
-            <form id="applyForm">
-                <p style="font-size: 0.85rem; font-weight: 700; color: #0f172a; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Quick Apply Form 🚀</p>
-                <div class="input-group"><input type="text" id="applicantName" placeholder="Full Name" required></div>
-                <div class="input-group"><input type="email" id="applicantEmail" placeholder="Your Email" required></div>
-                <div class="input-group"><input type="text" placeholder="LinkedIn / Portfolio Link (Optional)"></div>
-                <button type="submit" class="submit-btn">Submit Application 🎯</button>
-            </form>
+            <!-- Dynamic Content Container -->
+            <div id="modalJobDesc"></div>
+            
+            <!-- Polished Production-Ready Form -->
+            <div class="form-container">
+                <p class="form-title">🚀 Quick Apply Application</p>
+                <form id="applyForm" novalidate>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="applicantName">Full Name</label>
+                            <input type="text" id="applicantName" name="fullName" placeholder="e.g. Budi Santoso" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="applicantEmail">Email Address</label>
+                            <input type="email" id="applicantEmail" name="email" placeholder="e.g. budi@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="applicantPhone">WhatsApp Number</label>
+                            <input type="tel" id="applicantPhone" name="phone" placeholder="e.g. +62 812..." pattern="^\+?[0-9\s\-]{9,15}$" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="applicantCV">Upload CV / Resume (PDF preferred)</label>
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="applicantCV" name="cvFile" class="file-upload-input" accept="application/pdf" required>
+                                <div class="file-upload-ui" id="fileUploadUI">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                    <span id="fileNameDisplay">Click to upload PDF...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Application 🎯</button>
+                </form>
+            </div>
         </div>
     </div>
 
     <script>
         // Navbar Scroll Effect
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
 
         // Mobile Menu Toggle
         const hamburger = document.getElementById('hamburger'), navLinks = document.getElementById('nav-links');
@@ -745,11 +1688,12 @@
         hamburger.addEventListener('click', toggleMenu);
 
         // Toast Notification System
-        function showToast(message) {
+        function showToast(message, type = 'success') {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
             toast.className = 'toast';
-            toast.innerHTML = `<span>⚡</span> <span>${message}</span>`;
+            toast.innerHTML = `<span>${type === 'success' ? '⚡' : '⚠️'}</span> <span>${message}</span>`;
+            if (type === 'error') toast.style.borderLeftColor = 'var(--error-color)';
             container.appendChild(toast);
             setTimeout(() => {
                 toast.style.opacity = '0';
@@ -760,33 +1704,50 @@
 
         // Hero Parallax & Mouse Move Reactivity
         const heroSection = document.getElementById('heroSection');
-        heroSection.addEventListener('mousemove', (e) => {
+        let requestRef;
+        const handleMouseMove = (e) => {
             const { clientX, clientY } = e;
             const xVal = (clientX / window.innerWidth - 0.5) * 20;
             const yVal = (clientY / window.innerHeight - 0.5) * 20;
-            const blobs = heroSection.querySelectorAll('.floating-blob');
-            blobs.forEach((blob, index) => {
-                const factor = (index + 1) * 0.5;
-                blob.style.transform = `translate(${xVal * factor}px, ${yVal * factor}px)`;
+            
+            if (requestRef) cancelAnimationFrame(requestRef);
+            requestRef = requestAnimationFrame(() => {
+                const blobs = heroSection.querySelectorAll('.floating-blob');
+                blobs.forEach((blob, index) => {
+                    const factor = (index + 1) * 0.5;
+                    blob.style.transform = `translate(${xVal * factor}px, ${yVal * factor}px)`;
+                });
             });
-        });
+        };
+        heroSection.addEventListener('mousemove', handleMouseMove, { passive: true });
 
-        // Job Details Modal Controls
+        // Modular Job Modal Logic
         const jobModal = document.getElementById('jobModal');
         const closeJobModal = document.getElementById('closeJobModal');
         const modalJobTitle = document.getElementById('modalJobTitle');
         const modalJobDesc = document.getElementById('modalJobDesc');
         const modalJobTag = document.getElementById('modalJobTag');
+        const formEl = document.getElementById('applyForm');
+        const fileUI = document.getElementById('fileUploadUI');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
 
-        document.querySelectorAll('.job-card').forEach(card => {
+        document.querySelectorAll('.job-card:not(.dream-job-cta)').forEach(card => {
             card.addEventListener('click', () => {
                 const title = card.getAttribute('data-title');
-                const desc = card.getAttribute('data-desc');
                 const tag = card.querySelector('.job-tag').textContent;
+                const contentHTML = card.querySelector('.job-details-content').innerHTML;
 
                 modalJobTitle.textContent = title;
-                modalJobDesc.textContent = desc;
                 modalJobTag.textContent = tag;
+                modalJobDesc.innerHTML = contentHTML; // Safely populating structured HTML
+
+                // Reset form state visually on new modal open
+                formEl.reset();
+                formEl.classList.remove('was-validated');
+                fileUI.style.borderColor = '#94a3b8';
+                fileUI.style.background = '#ffffff';
+                fileNameDisplay.textContent = 'Click to upload PDF...';
+                fileNameDisplay.style.color = '#94a3b8';
 
                 jobModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -797,10 +1758,45 @@
         closeJobModal.addEventListener('click', closeJobModalFn);
         window.addEventListener('click', (e) => { if (e.target === jobModal) closeJobModalFn(); });
 
+        // File Upload UI Interaction
+        const fileInput = document.getElementById('applicantCV');
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                fileNameDisplay.textContent = e.target.files[0].name;
+                fileNameDisplay.style.color = '#0f172a';
+                fileUI.style.borderColor = '#3b82f6';
+                fileUI.style.background = '#f8fafc';
+            }
+        });
+
+        // Form Validation & Submission Preparation (EmailJS / Resend ready)
+        formEl.addEventListener('submit', (e) => { 
+            e.preventDefault(); 
+            
+            // Basic HTML5 Validity check
+            if (!formEl.checkValidity()) {
+                formEl.classList.add('was-validated');
+                showToast('Please fill out all required fields correctly.', 'error');
+                
+                // Trigger focus on first invalid element
+                const firstInvalid = formEl.querySelector(':invalid');
+                if (firstInvalid) firstInvalid.focus();
+                return;
+            }
+
+            // If valid, capture data for integration
+            const formData = new FormData(formEl);
+            const dataObj = Object.fromEntries(formData.entries());
+            
+            showToast(`Yay ${dataObj.fullName.split(' ')[0]}! Your application has been sent to Alkara. Good luck! 🚀✨`); 
+            closeJobModalFn(); 
+        });
+
         // Interactive Live Search Bar & Typing Placeholder
         const searchInput = document.getElementById('jobSearchInput');
         const jobsGrid = document.getElementById('jobsGrid');
-        const jobCards = jobsGrid.querySelectorAll('.job-card');
+        const jobCards = jobsGrid.querySelectorAll('.job-card:not(.dream-job-cta)');
+        const dreamJobCta = jobsGrid.querySelector('.dream-job-cta');
         const noResultsMsg = document.getElementById('noResultsMsg');
 
         const placeholders = [
@@ -826,6 +1822,7 @@
         setTimeout(typePlaceholder, 1000);
 
         function applySearchPreset(keyword) {
+            focusSearch(); // Scroll and focus first
             searchInput.value = keyword;
             searchInput.dispatchEvent(new Event('input'));
             showToast(`Filtered roles by "${keyword}" 🔍`);
@@ -835,33 +1832,72 @@
             const query = e.target.value.toLowerCase().trim();
             let visibleCount = 0;
 
+            // Automatically hide "Find Your Dream Job" CTA as soon as user begins searching
+            if (query !== '') {
+                dreamJobCta.style.display = 'none';
+            } else {
+                dreamJobCta.style.display = 'flex';
+            }
+
             jobCards.forEach(card => {
                 const title = card.getAttribute('data-title').toLowerCase();
-                const desc = card.getAttribute('data-desc').toLowerCase();
                 const tag = card.querySelector('.job-tag').textContent.toLowerCase();
                 
-                if (title.includes(query) || desc.includes(query) || tag.includes(query)) {
-                    card.style.display = 'flex';
-                    visibleCount++;
+                // Search inside the structured hidden content as well
+                const fullText = card.querySelector('.job-details-content').textContent.toLowerCase();
+                const isHiddenByDefault = card.getAttribute('data-default-hidden') === 'true';
+                
+                if (query === '') {
+                    card.style.display = isHiddenByDefault ? 'none' : 'flex';
+                    if (!isHiddenByDefault) visibleCount++;
                 } else {
-                    card.style.display = 'none';
+                    if (title.includes(query) || tag.includes(query) || fullText.includes(query)) {
+                        card.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
                 }
             });
 
-            if (visibleCount === 0) {
-                noResultsMsg.style.display = 'block';
-            } else {
-                noResultsMsg.style.display = 'none';
-            }
+            noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
         });
 
         // Keyboard Shortcut ⌘K for Search focus
         window.addEventListener('keydown', (e) => {
             if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
                 e.preventDefault();
-                searchInput.focus();
+                focusSearch();
                 showToast("Search focused via shortcut ⚡");
             }
+        });
+
+        // Smooth Scroll & Focus to Search
+        function focusSearch() {
+            const searchContainer = document.getElementById('jobSearchContainer');
+            const targetOffset = searchContainer.getBoundingClientRect().top + window.scrollY - 100;
+            
+            window.scrollTo({ top: targetOffset, behavior: 'smooth' });
+            
+            // Wait for smooth scroll, then focus and pulse
+            setTimeout(() => {
+                searchInput.focus();
+                searchContainer.style.transform = 'scale(1.02)';
+                searchContainer.style.boxShadow = '0 0 25px rgba(59, 130, 246, 0.2)';
+                setTimeout(() => {
+                    searchContainer.style.transform = '';
+                    searchContainer.style.boxShadow = '';
+                }, 300);
+            }, 500);
+        }
+
+        // Interactive Career Journey Steps Logic
+        const journeySteps = document.querySelectorAll('.journey-step');
+        journeySteps.forEach(step => {
+            step.addEventListener('click', () => {
+                journeySteps.forEach(s => s.classList.remove('active'));
+                step.classList.add('active');
+            });
         });
 
         // Animated Counters on Scroll
@@ -877,7 +1913,7 @@
                     current += increment;
                     if (current < target) {
                         counter.textContent = Math.ceil(current);
-                        setTimeout(updateCounter, 40);
+                        requestAnimationFrame(updateCounter);
                     } else {
                         counter.textContent = target + "+";
                     }
@@ -887,22 +1923,16 @@
         }
 
         window.addEventListener('scroll', () => {
+            if (animated) return;
+            const numbersGrid = document.querySelector('.numbers-grid');
+            if (!numbersGrid) return;
+            
             const scrollPos = window.scrollY + window.innerHeight;
-            const targetPos = document.querySelector('.numbers-grid').offsetTop;
-            if (scrollPos > targetPos && !animated) {
+            if (scrollPos > numbersGrid.offsetTop) {
                 animated = true;
                 runCounters();
             }
-        });
-
-        // Form Submission with Delightful Toast Notification
-        document.getElementById('applyForm').addEventListener('submit', (e) => { 
-            e.preventDefault(); 
-            const name = document.getElementById('applicantName').value;
-            showToast(`Yay ${name}! Your application has been sent to Alkara. Good luck! 🚀✨`); 
-            closeJobModalFn(); 
-            e.target.reset(); 
-        });
+        }, { passive: true });
     </script>
 </body>
 </html>
