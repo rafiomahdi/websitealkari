@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alkara Resources | Energy & Natural Resources Trading</title>
+    <meta name="description" content="Alkara Resources connects energy and natural resource producers with qualified buyers across international markets through structured commercial pathways.">
+    
+    <!-- Resource Hints & Critical Performance Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://encrypted-tbn0.gstatic.com">
+    <link rel="dns-prefetch" href="https://encrypted-tbn2.gstatic.com">
+    <link rel="dns-prefetch" href="https://encrypted-tbn3.gstatic.com">
+
+    <!-- Google Fonts (Optimized Weights: 400, 500, 600, 700, 800) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        alkara: {
+                            bg: '#FAF9F5',          /* Warm Soft Off-White */
+                            card: '#F1F3EE',        /* Soft Modern Sage Tint */
+                            green: '#143324',       /* Deep Corporate Forest Green */
+                            emerald: '#10B981',     /* Vibrant Young Accent Green */
+                            greenHover: '#0D2419',  
+                            sage: '#8DA493',        /* Eucalyptus Accent */
+                            olive: '#4F6354',       
+                            sand: '#E6E3D8',        /* Soft Border Color */
+                            charcoal: '#1A211E',    /* Soft Charcoal for Text */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Outfit', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF9F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D1D5DB;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #143324;
+        }
+        
+        /* GPU-Accelerated Hardware Composite Layer Animations */
+        .editorial-image-zoom {
+            will-change: transform;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .group:hover .editorial-image-zoom {
+            transform: scale(1.05);
+        }
+
+        /* Hover-to-reveal Mechanics (GPU Optimized) */
+        .reveal-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            will-change: max-height, opacity;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+        }
+        .reveal-card:hover .reveal-content {
+            max-height: 220px;
+            opacity: 1;
+            margin-top: 0.75rem;
+        }
+        .reveal-hint {
+            will-change: opacity;
+            transition: opacity 0.3s ease;
+        }
+        .reveal-card:hover .reveal-hint {
+            opacity: 0;
+        }
+
+        /* Styling Tone Warna Logo Pas/Setara dengan Theme Website */
+        .brand-logo-green {
+            filter: drop-shadow(0px 1px 1px rgba(20, 51, 36, 0.05));
+            will-change: filter, transform;
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+        .brand-logo-green:hover {
+            filter: drop-shadow(0px 3px 6px rgba(16, 185, 129, 0.2));
+        }
+        .logo-tone-adjust {
+            mix-blend-mode: multiply;
+        }
+    </style>
+</head>
+<body class="bg-alkara-bg text-alkara-charcoal font-sans antialiased selection:bg-alkara-emerald selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-alkara-green text-white/90 text-[11px] font-semibold tracking-wider uppercase py-2.5 px-6 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <span class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-alkara-emerald animate-pulse"></span>
+                Alkara Resources
+            </span>
+            <span class="hidden md:inline-block text-white font-medium">An Alkari Group Company</span>
+        </div>
+    </div>
+
+    <!-- GLOBAL NAVIGATION (RINGKAS & STREAMLINED) -->
+    <nav class="sticky top-0 z-50 bg-alkara-bg/90 backdrop-blur-md border-b border-alkara-sand/60 py-3.5 transition-all">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
+            
+            <!-- LOGO SECTION -->
+            <div class="flex items-center">
+                <a href="#" class="flex items-center transition-all duration-300 hover:opacity-90 brand-logo-green" title="Alkara Resources Logo">
+                    <img src="assets/image/alkara_resources_logo.png" 
+                         alt="Alkara Resources Logo" 
+                         width="320"
+                         height="80"
+                         fetchpriority="high"
+                         decoding="async"
+                         class="h-16 sm:h-20 w-auto object-contain logo-tone-adjust">
+                </a>
+            </div>
+
+            <!-- Desktop Nav Items -->
+            <div class="hidden lg:flex items-center space-x-8 text-xs font-bold tracking-wider uppercase text-alkara-charcoal/80">
+                <a href="about.html" class="hover:text-alkara-emerald transition-colors py-1">About Us</a>
+                <a href="#markets" class="hover:text-alkara-emerald transition-colors py-1">Our Markets</a>
+                <a href="#capabilities" class="hover:text-alkara-emerald transition-colors py-1">What We Do</a>
+                <a href="#sustainability" class="hover:text-alkara-emerald transition-colors py-1">Sustainability</a>
+            </div>
+
+            <!-- Header CTA -->
+            <div class="hidden lg:flex items-center">
+                <a href="#partner" class="px-5 py-2.5 rounded-full bg-alkara-green hover:bg-alkara-greenHover text-white text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
+                    Partner With Us
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="lg:hidden text-alkara-green focus:outline-none p-2 rounded-lg hover:bg-alkara-sand/50" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-alkara-bg border-b border-alkara-sand px-6 py-6 flex flex-col space-y-4 text-xs font-bold uppercase tracking-wider rounded-b-2xl shadow-xl">
+            <a href="#about" class="mobile-link text-alkara-charcoal hover:text-alkara-emerald py-1">About Us</a>
+            <a href="#markets" class="mobile-link text-alkara-charcoal hover:text-alkara-emerald py-1">Our Markets</a>
+            <a href="#capabilities" class="mobile-link text-alkara-charcoal hover:text-alkara-emerald py-1">What We Do</a>
+            <a href="#sustainability" class="mobile-link text-alkara-charcoal hover:text-alkara-emerald py-1">Sustainability</a>
+            <a href="#partner" class="mobile-link text-center px-4 py-3 bg-alkara-green text-white font-semibold rounded-full uppercase shadow-md">
+                Partner With Us
+            </a>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <section class="relative bg-alkara-bg pt-12 pb-24 md:pt-16 md:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Typography -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-alkara-card border border-alkara-sand text-alkara-green text-[11px] font-bold tracking-widest uppercase shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-alkara-emerald"></span>
+                        <span>Energy & Natural Resources Partner</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-alkara-green leading-[1.15] tracking-tight">
+                        Connecting Resources. <br>
+                        <span class="font-light text-alkara-olive">Powering Global Markets.</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-alkara-charcoal/80 max-w-xl font-normal leading-relaxed">
+                        Alkara Resources connects energy and natural resource producers with qualified buyers across global markets, creating efficient, structured commercial pathways from supply to demand.
+                    </p>
+
+                    <div class="pt-4 flex flex-col sm:flex-row items-center gap-4">
+                        <a href="#markets" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-alkara-green hover:bg-alkara-greenHover text-white font-bold text-xs tracking-wider uppercase transition-all text-center shadow-md hover:shadow-lg hover:-translate-y-0.5">
+                            Explore Our Markets
+                        </a>
+                        <a href="#partner" class="w-full sm:w-auto px-7 py-3.5 rounded-full border border-alkara-green text-alkara-green hover:bg-alkara-green hover:text-white text-xs font-bold tracking-wider uppercase transition-all text-center">
+                            Partner With Us
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Right Photography -->
+                <div class="lg:col-span-5">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-alkara-sand/80 group">
+                        <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSFGGhe-y4bvIJ92Gnt3-rO67IsN5TvyRGRCkxmRHJHQtmm5a6fe_DvgmYer2LmsxkaReaW-ZaAGKJ_beQ" 
+                             alt="Aerial view of natural resource landscape" 
+                             width="600"
+                             height="480"
+                             fetchpriority="high"
+                             decoding="async"
+                             class="w-full h-[400px] sm:h-[480px] object-cover editorial-image-zoom">
+                        <div class="absolute inset-0 bg-gradient-to-t from-alkara-green/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white space-y-1">
+                            <span class="text-[10px] uppercase font-bold tracking-widest text-emerald-400 bg-black/30 backdrop-blur-md px-2.5 py-1 rounded-full inline-block">Global Supply Pathways</span>
+                            <p class="text-xs font-medium text-white/90 pt-1">Unlocking commercial opportunity across physical resource markets.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. EDITORIAL INTRODUCTION -->
+    <section id="about" class="py-20 bg-alkara-bg border-t border-alkara-sand/60">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8 text-center space-y-6">
+            <span class="text-xs font-bold tracking-widest text-alkara-olive uppercase bg-alkara-card px-3 py-1 rounded-full border border-alkara-sand">Our Positioning</span>
+            <h2 class="text-2xl sm:text-3xl font-serif font-semibold text-alkara-green leading-relaxed">
+                "Resources move markets. Markets create opportunity. We build the trusted commercial bridges that connect the two."
+            </h2>
+            <p class="text-sm sm:text-base text-alkara-charcoal/80 leading-relaxed max-w-2xl mx-auto font-normal">
+                Alkara Resources operates as a market connectivity and commercial trading partner. Rather than managing physical extraction or heavy assets, we focus on market intelligence, transaction structuring, sourcing, and supply-chain coordination for international counterparties.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. OUR MARKETS -->
+    <section id="markets" class="py-24 bg-alkara-card rounded-3xl my-6 mx-4 sm:mx-8 border border-alkara-sand/60 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="text-xs font-bold tracking-widest text-alkara-olive uppercase block mb-2">Resource Portfolio</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-alkara-green">Our Commodity Focus</h2>
+                </div>
+                <p class="text-xs sm:text-sm text-alkara-charcoal/70 max-w-md mt-4 md:mt-0 leading-relaxed">
+                    Hover over each commodity sector to preview scope, or click to open full market details.
+                </p>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Card 1: Energy Commodities -->
+                <a href="energy-commodities.html" class="reveal-card block grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-alkara-bg p-6 sm:p-10 rounded-2xl border border-alkara-sand/80 shadow-sm group cursor-pointer transition-all duration-300 hover:shadow-xl hover:border-alkara-emerald/50">
+                    <div class="lg:col-span-6 rounded-xl overflow-hidden h-60 sm:h-72">
+                        <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTKe_zjuV1Qe3I5L8PfHIb1vbhYn4iUjsefhbEqNifFf6FuMyloNG1zT60Ol2cUbAd-2fjlxinX8OnAA6A" 
+                             alt="Maritime port and energy commodity transport" 
+                             width="600"
+                             height="288"
+                             loading="lazy"
+                             decoding="async"
+                             class="w-full h-full object-cover editorial-image-zoom">
+                    </div>
+                    <div class="lg:col-span-6 space-y-3 lg:pl-4">
+                        <span class="text-xs font-bold tracking-widest text-alkara-emerald uppercase">01 / ENERGY COMMODITIES</span>
+                        <h3 class="text-2xl font-serif font-bold text-alkara-green group-hover:text-alkara-emerald transition-colors">Thermal & Traditional Energy</h3>
+                        <p class="reveal-hint text-xs text-alkara-olive font-medium flex items-center gap-1">
+                            <span>Hover preview or click to open full page</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                        </p>
+                        
+                        <div class="reveal-content space-y-4">
+                            <p class="text-xs sm:text-sm text-alkara-charcoal/80 leading-relaxed">
+                                Connecting reliable energy resource supply—including thermal coal, petroleum products, and natural gas—with utilities, industrial consumers, and regional power generators.
+                            </p>
+                            <div class="pt-2 flex flex-wrap gap-2 text-[11px] font-semibold text-alkara-green">
+                                <span class="px-3 py-1 rounded-full bg-alkara-card border border-alkara-sand">Coal</span>
+                                <span class="px-3 py-1 rounded-full bg-alkara-card border border-alkara-sand">Natural Gas & LNG</span>
+                                <span class="px-3 py-1 rounded-full bg-alkara-card border border-alkara-sand">Petroleum Products</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2: Natural Resources -->
+                <a href="natural-resources.html" class="reveal-card block grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-alkara-bg p-6 sm:p-10 rounded-2xl border border-alkara-sand/80 shadow-sm group cursor-pointer transition-all duration-300 hover:shadow-xl hover:border-alkara-emerald/50">
+                    <div class="lg:col-span-6 order-last lg:order-first space-y-3 lg:pr-4">
+                        <span class="text-xs font-bold tracking-widest text-alkara-emerald uppercase">02 / NATURAL RESOURCES</span>
+                        <h3 class="text-2xl font-serif font-bold text-alkara-green group-hover:text-alkara-emerald transition-colors">Minerals & Industrial Ores</h3>
+                        <p class="reveal-hint text-xs text-alkara-olive font-medium flex items-center gap-1">
+                            <span>Hover preview or click to open full page</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                        </p>
+
+                        <div class="reveal-content space-y-4">
+                            <p class="text-xs sm:text-sm text-alkara-charcoal/80 leading-relaxed">
+                                Facilitating trade channels for essential raw materials, industrial minerals, and metallic concentrates required for manufacturing and infrastructure development.
+                            </p>
+                            <div class="pt-2 flex flex-wrap gap-2 text-[11px] font-semibold text-alkara-green">
+                                <span class="px-3 py-1 rounded-full bg-alkara-card border border-alkara-sand">Industrial Ores</span>
+                                <span class="px-3 py-1 rounded-full bg-alkara-card border border-alkara-sand">Base Metals</span>
+                                <span class="px-3 py-1 rounded-full bg-alkara-card border border-alkara-sand">Strategic Minerals</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-6 rounded-xl overflow-hidden h-60 sm:h-72">
+                        <img src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcS8ji6tLjGmay6OALxu9H9NMeTm6YzrH_v83u6DftfdB2joVunMy2r-eYRvQwsV6RUUuhTZsziCUXSnPuU" 
+                             alt="Coastal mineral landscape" 
+                             width="600"
+                             height="288"
+                             loading="lazy"
+                             decoding="async"
+                             class="w-full h-full object-cover editorial-image-zoom">
+                    </div>
+                </a>
+
+                <!-- Card 3: Transition Commodities -->
+                <a href="transition-commodities.html" class="reveal-card block grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-alkara-bg p-6 sm:p-10 rounded-2xl border border-alkara-sand/80 shadow-sm group cursor-pointer transition-all duration-300 hover:shadow-xl hover:border-alkara-emerald/50">
+                    <div class="lg:col-span-6 rounded-xl overflow-hidden h-60 sm:h-72">
+                        <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTZ-vmvu6-AgUjkJBVEDmYLhWLjT-ifFMvF_k4FoEGwhbl9wfRyBr0CRJL5b74UU5Jbmex5MJ36E87qgPA" 
+                             alt="Renewable energy wind and solar landscape" 
+                             width="600"
+                             height="288"
+                             loading="lazy"
+                             decoding="async"
+                             class="w-full h-full object-cover editorial-image-zoom">
+                    </div>
+                    <div class="lg:col-span-6 space-y-3 lg:pl-4">
+                        <span class="text-xs font-bold tracking-widest text-alkara-emerald uppercase">03 / TRANSITION COMMODITIES</span>
+                        <h3 class="text-2xl font-serif font-bold text-alkara-green group-hover:text-alkara-emerald transition-colors">Energy Transition Materials</h3>
+                        <p class="reveal-hint text-xs text-alkara-olive font-medium flex items-center gap-1">
+                            <span>Hover preview or click to open full page</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                        </p>
+
+                        <div class="reveal-content space-y-4">
+                            <p class="text-xs sm:text-sm text-alkara-charcoal/80 leading-relaxed">
+                                Origination and trade support for commodities critical to decarbonization, including battery minerals (nickel, copper), biomass, and renewable energy feedstock.
+                            </p>
+                            <div class="pt-2 flex flex-wrap gap-2 text-[11px] font-semibold text-alkara-green">
+                                <span class="px-3 py-1 rounded-full bg-alkara-card border border-alkara-sand">Nickel & Copper</span>
+                                <span class="px-3 py-1 rounded-full bg-alkara-card border border-alkara-sand">Biomass</span>
+                                <span class="px-3 py-1 rounded-full bg-alkara-card border border-alkara-sand">Low-Carbon Fuels</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. WHAT WE DO (CAPABILITIES) -->
+    <section id="capabilities" class="py-24 bg-alkara-bg">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="max-w-3xl space-y-3 mb-16">
+                <span class="text-xs font-bold tracking-widest text-alkara-olive uppercase">Our Capabilities</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-alkara-green">How We Create Value</h2>
+                <p class="text-xs sm:text-sm text-alkara-charcoal/70 leading-relaxed">
+                    Alkara Resources provides institutional commercial support across key capability pillars.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="reveal-card bg-alkara-card/60 p-7 rounded-2xl border border-alkara-sand/80 space-y-3 cursor-pointer transition-all duration-300 hover:border-alkara-emerald hover:bg-white hover:shadow-lg">
+                    <div class="w-10 h-10 rounded-xl bg-alkara-green/10 flex items-center justify-center text-alkara-green">
+                        <i class="fa-solid fa-chart-line text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-alkara-green">Market Intelligence</h3>
+                    <p class="reveal-hint text-[11px] text-alkara-olive font-medium">Hover to inspect →</p>
+                    <div class="reveal-content">
+                        <p class="text-xs text-alkara-charcoal/80 leading-relaxed">
+                            Synthesizing supply dynamics, regional pricing spreads, and market trends to position transactions effectively.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal-card bg-alkara-card/60 p-7 rounded-2xl border border-alkara-sand/80 space-y-3 cursor-pointer transition-all duration-300 hover:border-alkara-emerald hover:bg-white hover:shadow-lg">
+                    <div class="w-10 h-10 rounded-xl bg-alkara-green/10 flex items-center justify-center text-alkara-green">
+                        <i class="fa-solid fa-network-wired text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-alkara-green">Sourcing & Origination</h3>
+                    <p class="reveal-hint text-[11px] text-alkara-olive font-medium">Hover to inspect →</p>
+                    <div class="reveal-content">
+                        <p class="text-xs text-alkara-charcoal/80 leading-relaxed">
+                            Connecting verified resource suppliers with expanding international commercial opportunities.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal-card bg-alkara-card/60 p-7 rounded-2xl border border-alkara-sand/80 space-y-3 cursor-pointer transition-all duration-300 hover:border-alkara-emerald hover:bg-white hover:shadow-lg">
+                    <div class="w-10 h-10 rounded-xl bg-alkara-green/10 flex items-center justify-center text-alkara-green">
+                        <i class="fa-solid fa-file-signature text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-alkara-green">Commercial Structuring</h3>
+                    <p class="reveal-hint text-[11px] text-alkara-olive font-medium">Hover to inspect →</p>
+                    <div class="reveal-content">
+                        <p class="text-xs text-alkara-charcoal/80 leading-relaxed">
+                            Developing flexible off-take contracts and pricing mechanisms aligned with supplier and buyer goals.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal-card bg-alkara-card/60 p-7 rounded-2xl border border-alkara-sand/80 space-y-3 cursor-pointer transition-all duration-300 hover:border-alkara-emerald hover:bg-white hover:shadow-lg">
+                    <div class="w-10 h-10 rounded-xl bg-alkara-green/10 flex items-center justify-center text-alkara-green">
+                        <i class="fa-solid fa-truck-ramp-box text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-alkara-green">Supply Chain Coordination</h3>
+                    <p class="reveal-hint text-[11px] text-alkara-olive font-medium">Hover to inspect →</p>
+                    <div class="reveal-content">
+                        <p class="text-xs text-alkara-charcoal/80 leading-relaxed">
+                            Supporting transaction execution, shipping logistics, documentation compliance, and quality checks.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal-card bg-alkara-card/60 p-7 rounded-2xl border border-alkara-sand/80 space-y-3 cursor-pointer transition-all duration-300 hover:border-alkara-emerald hover:bg-white hover:shadow-lg">
+                    <div class="w-10 h-10 rounded-xl bg-alkara-green/10 flex items-center justify-center text-alkara-green">
+                        <i class="fa-solid fa-shield-halved text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-alkara-green">Risk Management</h3>
+                    <p class="reveal-hint text-[11px] text-alkara-olive font-medium">Hover to inspect →</p>
+                    <div class="reveal-content">
+                        <p class="text-xs text-alkara-charcoal/80 leading-relaxed">
+                            Implementing rigorous KYC, financial checks, and regulatory compliance protocols for every transaction.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal-card bg-alkara-card/60 p-7 rounded-2xl border border-alkara-sand/80 space-y-3 cursor-pointer transition-all duration-300 hover:border-alkara-emerald hover:bg-white hover:shadow-lg">
+                    <div class="w-10 h-10 rounded-xl bg-alkara-green/10 flex items-center justify-center text-alkara-green">
+                        <i class="fa-solid fa-handshake text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-alkara-green">Strategic Partnerships</h3>
+                    <p class="reveal-hint text-[11px] text-alkara-olive font-medium">Hover to inspect →</p>
+                    <div class="reveal-content">
+                        <p class="text-xs text-alkara-charcoal/80 leading-relaxed">
+                            Building long-term alliances across producers, industrial buyers, and regional market stakeholders.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. RESPONSIBLE SOURCING -->
+    <section id="sustainability" class="py-24 bg-alkara-card rounded-3xl my-6 mx-4 sm:mx-8 border border-alkara-sand/60">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs font-bold tracking-widest text-alkara-olive uppercase">Corporate Governance</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-alkara-green">Resources With Responsibility</h2>
+                    <p class="text-sm sm:text-base text-alkara-charcoal/80 leading-relaxed font-normal">
+                        We believe efficient commodity markets must also be responsible markets. Our approach places counterparty integrity, environmental awareness, and regulatory compliance at the core of all commercial relationships.
+                    </p>
+
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-start space-x-3 bg-alkara-bg p-4 rounded-xl border border-alkara-sand/80">
+                            <i class="fa-solid fa-circle-check text-alkara-emerald text-base mt-0.5"></i>
+                            <p class="text-xs text-alkara-charcoal/80 leading-relaxed"><strong>Rigorous Due Diligence:</strong> Thorough background and compliance checks across all suppliers and buyers.</p>
+                        </div>
+                        <div class="flex items-start space-x-3 bg-alkara-bg p-4 rounded-xl border border-alkara-sand/80">
+                            <i class="fa-solid fa-circle-check text-alkara-emerald text-base mt-0.5"></i>
+                            <p class="text-xs text-alkara-charcoal/80 leading-relaxed"><strong>Supply-Chain Transparency:</strong> Ensuring clear origin verification and adherence to export regulations.</p>
+                        </div>
+                        <div class="flex items-start space-x-3 bg-alkara-bg p-4 rounded-xl border border-alkara-sand/80">
+                            <i class="fa-solid fa-circle-check text-alkara-emerald text-base mt-0.5"></i>
+                            <p class="text-xs text-alkara-charcoal/80 leading-relaxed"><strong>Transition Alignment:</strong> Supporting energy markets as they shift toward sustainable and lower-carbon resources.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="rounded-3xl overflow-hidden shadow-xl border border-alkara-sand/80">
+                        <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSFGGhe-y4bvIJ92Gnt3-rO67IsN5TvyRGRCkxmRHJHQtmm5a6fe_DvgmYer2LmsxkaReaW-ZaAGKJ_beQ" 
+                             alt="Natural landscape showing forests and mountains" 
+                             width="600"
+                             height="400"
+                             loading="lazy"
+                             decoding="async"
+                             class="w-full h-[400px] object-cover">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PARTNER WITH US -->
+    <section id="partner" class="py-24 bg-alkara-bg">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8">
+            <div class="text-center space-y-4 mb-12">
+                <span class="text-xs font-bold tracking-widest text-alkara-olive uppercase">Commercial Dialogue</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-alkara-green">Partner With Alkara Resources</h2>
+                <p class="text-xs sm:text-sm text-alkara-charcoal/80 max-w-lg mx-auto">
+                    Select your corporate pathway to submit a commercial enquiry to our trading desk.
+                </p>
+
+                <!-- Pathway Switcher (Pill Rounded) -->
+                <div class="inline-flex p-1.5 bg-alkara-card rounded-full border border-alkara-sand mt-4">
+                    <button id="btn-supplier" onclick="switchPathway('supplier')" type="button" class="px-6 py-2 rounded-full text-xs font-bold transition-all bg-alkara-green text-white shadow-sm">
+                        I am a Producer / Supplier
+                    </button>
+                    <button id="btn-buyer" onclick="switchPathway('buyer')" type="button" class="px-6 py-2 rounded-full text-xs font-bold transition-all text-alkara-charcoal hover:text-alkara-green">
+                        I am a Buyer / Off-Taker
+                    </button>
+                </div>
+            </div>
+
+            <!-- B2B Form -->
+            <div class="p-8 sm:p-10 rounded-3xl bg-alkara-card/60 border border-alkara-sand/80 shadow-sm">
+                <form id="intake-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold text-alkara-charcoal mb-2">Company Legal Name *</label>
+                            <input type="text" required placeholder="Entity Name" class="w-full px-4 py-3 rounded-xl bg-alkara-bg border border-alkara-sand/80 text-alkara-charcoal text-xs focus:outline-none focus:border-alkara-green">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-alkara-charcoal mb-2">Corporate Email *</label>
+                            <input type="email" required placeholder="corporate@company.com" class="w-full px-4 py-3 rounded-xl bg-alkara-bg border border-alkara-sand/80 text-alkara-charcoal text-xs focus:outline-none focus:border-alkara-green">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold text-alkara-charcoal mb-2">Commodity Category *</label>
+                            <select class="w-full px-4 py-3 rounded-xl bg-alkara-bg border border-alkara-sand/80 text-alkara-charcoal text-xs focus:outline-none focus:border-alkara-green">
+                                <option>Thermal / Metallurgical Coal</option>
+                                <option>Natural Gas / LNG</option>
+                                <option>Battery Minerals (Nickel/Copper)</option>
+                                <option>Biomass / Low-Carbon Pellets</option>
+                                <option>Industrial Ores & Concentrates</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label id="lbl-volume" class="block text-xs font-bold text-alkara-charcoal mb-2">Available Supply Volume / Capacity *</label>
+                            <input type="text" required placeholder="e.g. 50,000 MT / Month" class="w-full px-4 py-3 rounded-xl bg-alkara-bg border border-alkara-sand/80 text-alkara-charcoal text-xs focus:outline-none focus:border-alkara-green">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label id="lbl-specs" class="block text-xs font-bold text-alkara-charcoal mb-2">Resource Specifications & Origin Details</label>
+                        <textarea rows="4" placeholder="Provide technical specifications, calorific values, moisture levels, or required delivery schedules..." class="w-full px-4 py-3 rounded-xl bg-alkara-bg border border-alkara-sand/80 text-alkara-charcoal text-xs focus:outline-none focus:border-alkara-green"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-full bg-alkara-green hover:bg-alkara-greenHover text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg">
+                        Submit Commercial Enquiry
+                    </button>
+
+                    <p class="text-[11px] text-alkara-charcoal/60 text-center">
+                        All submissions are handled under corporate confidentiality and standard non-disclosure practices.
+                    </p>
+                </form>
+
+                <!-- Success State Message -->
+                <div id="form-success" class="hidden p-8 text-center space-y-4">
+                    <i class="fa-solid fa-circle-check text-alkara-emerald text-5xl"></i>
+                    <h3 class="text-xl font-serif text-alkara-green font-bold">Enquiry Received</h3>
+                    <p class="text-xs text-alkara-charcoal/80 max-w-md mx-auto leading-relaxed">
+                        Thank you for reaching out. Our commercial team will review your submission and initiate contact shortly.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORPORATE FOOTER -->
+    <footer class="bg-alkara-green text-white/90 text-xs py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 grid grid-cols-1 md:grid-cols-12 gap-12">
+            
+            <div class="md:col-span-5 space-y-6">
+                <!-- LOGO FOOTER -->
+                <div class="flex items-center">
+                    <img src="assets/image/alkara_resources_logo.png" 
+                         alt="Alkara Resources Logo" 
+                         width="320"
+                         height="80"
+                         loading="lazy"
+                         decoding="async"
+                         class="h-16 sm:h-20 w-auto object-contain brightness-0 invert">
+                </div>
+
+                <!-- ALAMAT & KONTAK ALKARA RESOURCES -->
+                <div class="space-y-4 text-white/80 text-[11px] leading-relaxed">
+                    <!-- Representative Office -->
+                    <div class="space-y-1">
+                        <p class="font-bold uppercase tracking-wider text-emerald-400 text-[10px]">Our Representative Office</p>
+                        <p class="text-white/90 font-medium">Wisma H1 Kav. 23 Lt. 2, Jl. Raflesia IV,<br>Depok, Jawa Barat, Indonesia, 16452</p>
+                        <p class="text-white/70">Phone: <a href="tel:0217822818" class="hover:text-emerald-400 transition-colors">(021) 782-2818</a></p>
+                    </div>
+
+                    <!-- Correspondence Office -->
+                    <div class="space-y-1 pt-1">
+                        <p class="font-bold uppercase tracking-wider text-emerald-400 text-[10px]">Our Correspondence Office</p>
+                        <p class="text-white/90 font-medium">Jalan Jenderal Sudirman Kav. 75,<br>Setiabudi, Jakarta Selatan, DKI Jakarta 12910</p>
+                    </div>
+                </div>
+
+                <p class="text-white/60 leading-relaxed max-w-sm text-[11px] pt-2 border-t border-white/10">
+                    Connecting resources with markets through trusted commercial relationships, market intelligence, and structured transaction facilitation.
+                </p>
+            </div>
+
+            <div class="md:col-span-3 space-y-3">
+                <div class="text-white font-bold text-xs uppercase tracking-wider">Quick Links</div>
+                <ul class="space-y-2 text-white/70 text-xs">
+                    <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="#markets" class="hover:text-white transition-colors">Our Commodity Focus</a></li>
+                    <li><a href="#capabilities" class="hover:text-white transition-colors">Capabilities</a></li>
+                    <li><a href="#sustainability" class="hover:text-white transition-colors">Responsible Sourcing</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-4 space-y-3">
+                <div class="text-white font-bold text-xs uppercase tracking-wider">Governance & Legal</div>
+                <p class="text-white/70 leading-relaxed text-[11px]">
+                    Alkara Resources operates as a commercial trading and market connectivity partner. All transactions are governed by definitive bilateral contracts.
+                </p>
+                <div class="pt-2 text-[11px] text-emerald-400/80 font-medium">
+                    © 2026 Alkara Resources. All rights reserved.
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            if (mobileMenuBtn && mobileMenu && menuIcon) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    const isHidden = mobileMenu.classList.toggle('hidden');
+                    menuIcon.className = isHidden ? 'fa-solid fa-bars text-xl' : 'fa-solid fa-xmark text-xl';
+                });
+
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        menuIcon.className = 'fa-solid fa-bars text-xl';
+                    });
+                });
+            }
+        });
+
+        function switchPathway(pathway) {
+            const btnSupplier = document.getElementById('btn-supplier');
+            const btnBuyer = document.getElementById('btn-buyer');
+            const lblVolume = document.getElementById('lbl-volume');
+            const lblSpecs = document.getElementById('lbl-specs');
+
+            if (!btnSupplier || !btnBuyer || !lblVolume || !lblSpecs) return;
+
+            if (pathway === 'supplier') {
+                btnSupplier.className = 'px-6 py-2 rounded-full text-xs font-bold transition-all bg-alkara-green text-white shadow-sm';
+                btnBuyer.className = 'px-6 py-2 rounded-full text-xs font-bold transition-all text-alkara-charcoal hover:text-alkara-green';
+                lblVolume.innerText = 'Available Supply Volume / Capacity *';
+                lblSpecs.innerText = 'Resource Specifications & Origin Details';
+            } else {
+                btnBuyer.className = 'px-6 py-2 rounded-full text-xs font-bold transition-all bg-alkara-green text-white shadow-sm';
+                btnSupplier.className = 'px-6 py-2 rounded-full text-xs font-bold transition-all text-alkara-charcoal hover:text-alkara-green';
+                lblVolume.innerText = 'Required Off-Take Volume & Schedule *';
+                lblSpecs.innerText = 'Off-Take Specifications & Destination Port Details';
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const intakeForm = document.getElementById('intake-form');
+            const formSuccess = document.getElementById('form-success');
+            if (intakeForm && formSuccess) {
+                intakeForm.classList.add('hidden');
+                formSuccess.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

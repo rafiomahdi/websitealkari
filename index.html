@@ -225,7 +225,7 @@
         .platform-icon-wrapper svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
         .status-badge { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; padding: 0.35rem 0.8rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.05); }
-        .status-badge.active { color: #ff99a8; border-color: rgba(168, 78, 102, 0.4); background: rgba(168, 78, 102, 0.1); }
+        .status-badge.active { color: #8ED8FF; border-color: rgba(142, 216, 255, 0.4); background: rgba(142, 216, 255, 0.1); }
         .status-badge.coming-soon { color: var(--text-secondary); border-color: rgba(255, 255, 255, 0.15); }
 
         .platform-content h3 { font-size: 1.65rem; margin-bottom: 0.8rem; letter-spacing: -0.01em; line-height: 1.25; }
@@ -240,7 +240,9 @@
         }
 
         .platform-btn.active-link { background: linear-gradient(135deg, #5B1020, #A84E66); border-color: rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(91, 16, 32, 0.4); }
+        .platform-btn.active-link.green-btn { background: linear-gradient(135deg, #0B4F3F, #2E8B57); box-shadow: 0 4px 15px rgba(11, 79, 63, 0.4); }
         .platform-btn.active-link:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(168, 78, 102, 0.5); border-color: rgba(255, 255, 255, 0.6); }
+        .platform-btn.active-link.green-btn:hover { box-shadow: 0 8px 25px rgba(46, 139, 87, 0.5); }
         .platform-btn.disabled-link { opacity: 0.65; cursor: default; background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.08); }
         .platform-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.3s ease; }
         .platform-btn.active-link:hover svg { transform: translate(3px, -3px); }
@@ -506,7 +508,7 @@
                <p><strong>Alkari Group</strong> is a diversified holding group led by <strong>PT Alkara Indonesia Megapersada</strong>, bringing together a portfolio of businesses across legal advisory, workforce solutions, consulting, investment, and natural resources. United by a shared vision of building enduring institutions, the Group is committed to creating sustainable value for businesses, communities, and future generations.</p>
                <p>As the Group's principal holding company, <strong>PT Alkara Indonesia Megapersada</strong> provides strategic leadership, corporate governance, capital stewardship, and operational oversight across its portfolio, enabling each member company to grow independently while benefiting from the strength, direction, and long-term vision of the Group.</p>
                <p>The Group's portfolio includes <strong>Alkara Legal Advisory</strong>, <strong>Alkara Workforce</strong>, <strong>Alkara Consulting</strong>, <strong>Alkara Ventures</strong>, and <strong>Alkara Resources</strong>. Together, these companies represent Alkari Group's commitment to responsible leadership, entrepreneurial excellence, and sustainable growth, advancing a legacy that extends beyond business itself.</p>
-
+            </div>
             <div class="about-image fade-up"></div>
         </div>
     </section>
@@ -579,20 +581,23 @@
                 </div>
             </div>
 
-            <!-- 4. Alkara Energy -->
+            <!-- 4. Alkara Resources (UPDATED & ACTIVE) -->
             <div class="platform-card fade-up" style="--card-gradient: linear-gradient(90deg, #0B4F3F, #2E8B57);" data-platform="energy">
                 <div class="platform-card-header">
                     <div class="platform-icon-wrapper" style="color: #2E8B57;">
                         <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                     </div>
-                    <span class="status-badge coming-soon">Under Development</span>
+                    <span class="status-badge active">Active</span>
                 </div>
                 <div class="platform-content">
                     <h3>Alkara Resources</h3>
                     <p>Commercial platform facilitating strategic partnerships and opportunities across the natural resources and energy sectors.</p>
                 </div>
                 <div class="platform-footer">
-                    <span class="platform-btn disabled-link">Explore Platform</span>
+                    <a href="https://resources.alkari.asia" target="_self" class="platform-btn active-link green-btn">
+                        Explore Platform
+                        <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"></path></svg>
+                    </a>
                 </div>
             </div>
 
